@@ -1,0 +1,63 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.shipwire.com/exec/InventoryServices.php
+    body:
+      encoding: US-ASCII
+      string: ! "<?xml version=\"1.0\"?>\n<InventoryUpdate>\n  <Username>chris@spreecommerce.com</Username>\n
+        \ <Password>GBb4gv6wCjVeHV</Password>\n  <Server>Test</Server>\n</InventoryUpdate>\n"
+    headers: {}
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 06 Nov 2012 14:41:07 GMT
+      Server:
+      - Apache
+      Set-Cookie:
+      - PHPSESSID=pgr9f8jfpkt3e26afdnp8naf81; path=/
+      Expires:
+      - Mon, 26 Jul 1997 05:00:00 GMT
+      Cache-Control:
+      - no-store, no-cache, must-revalidate
+      - post-check=0, pre-check=0
+      Pragma:
+      - no-cache
+      Last-Modified:
+      - Tue, 06 Nov 2012 14:41:07 GMT
+      Vary:
+      - Accept-Encoding
+      P3p:
+      - policyref="/w3c/p3p.xml", CP="COM CNT INT NAV PUR STA UNI CAO DSP CUR o i
+        OUR IND"
+      Content-Length:
+      - '1493'
+      Content-Type:
+      - text/xml; charset=utf-8
+    body:
+      encoding: US-ASCII
+      string: ! "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<!DOCTYPE InventoryUpdateResponse
+        SYSTEM \"http://www.shipwire.com/exec/download/InventoryUpdateResponse.dtd\">\r\n<InventoryUpdateResponse>
+        \   <Status>Test</Status>\r\n    <Product code=\"GD802-024\"\r\n             quantity=\"14\"\r\n
+        \            good=\"14\"\r\n             pending=\"300\"\r\n             backordered=\"0\"\r\n
+        \            reserved=\"15\"\r\n             shipping=\"7\"\r\n             shipped=\"7013\"\r\n
+        \            consuming=\"0\"\r\n             consumed=\"0\"\r\n             creating=\"0\"\r\n
+        \            created=\"0\"\r\n             availableDate=\"2012-01-19\"\r\n
+        \            shippedLastDay=\"13\"\r\n             shippedLastWeek=\"84\"\r\n
+        \            shippedLast4Weeks=\"401\"\r\n             orderedLastDay=\"15\"\r\n
+        \            orderedLastWeek=\"99\"\r\n             orderedLast4Weeks=\"416\"
+        />\r\n    <Product code=\"GD201-500\"\r\n             quantity=\"32\"\r\n
+        \            good=\"32\"\r\n             pending=\"500\"\r\n             backordered=\"0\"\r\n
+        \            reserved=\"17\"\r\n             shipping=\"0\"\r\n             shipped=\"1997\"\r\n
+        \            consuming=\"0\"\r\n             consumed=\"0\"\r\n             creating=\"0\"\r\n
+        \            created=\"0\"\r\n             availableDate=\"2012-02-21\"\r\n
+        \            shippedLastDay=\"11\"\r\n             shippedLastWeek=\"74\"\r\n
+        \            shippedLast4Weeks=\"221\"\r\n             orderedLastDay=\"19\"\r\n
+        \            orderedLastWeek=\"90\"\r\n             orderedLast4Weeks=\"242\"
+        />\r\n    <TotalProducts>2</TotalProducts><ProcessingTime units=\"ms\">13</ProcessingTime></InventoryUpdateResponse>"
+    http_version: 
+  recorded_at: Tue, 06 Nov 2012 14:41:07 GMT
+recorded_with: VCR 2.2.2

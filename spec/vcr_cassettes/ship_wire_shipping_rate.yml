@@ -1,0 +1,50 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.shipwire.com/exec/RateServices.php
+    body:
+      encoding: US-ASCII
+      string: ! "<?xml version=\"1.0\"?>\n<RateRequest>\n  <Username>chris@spreecommerce.com</Username>\n
+        \ <Password>GBb4gv6wCjVeHV</Password>\n  <Server>Test</Server>\n  <Order id=\"R99777122\">\n
+        \   <Warehouse>00</Warehouse>\n    <AddressInfo type=\"ship\">\n      <Address1>5819
+        Derick Club</Address1>\n      <Address2>Suite 240</Address2>\n      <City>South
+        William</City>\n      <State>NY</State>\n      <Country>US</Country>\n      <Zip>16804</Zip>\n
+        \   </AddressInfo>\n    <Item num=\"0\">\n      <Code>ROR-00011</Code>\n      <Quantity>3</Quantity>\n
+        \   </Item>\n  </Order>\n</RateRequest>\n"
+    headers: {}
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 06 Nov 2012 13:52:47 GMT
+      Server:
+      - Apache
+      Set-Cookie:
+      - PHPSESSID=h55jujutcrb9ihg4avftnc3ao1; path=/
+      Expires:
+      - Thu, 19 Nov 1981 08:52:00 GMT
+      Cache-Control:
+      - no-store, no-cache, must-revalidate, post-check=0, pre-check=0
+      Pragma:
+      - no-cache
+      Vary:
+      - Accept-Encoding
+      P3p:
+      - policyref="/w3c/p3p.xml", CP="COM CNT INT NAV PUR STA UNI CAO DSP CUR o i
+        OUR IND"
+      Content-Length:
+      - '286'
+      Content-Type:
+      - application/xml; charset=utf-8
+    body:
+      encoding: US-ASCII
+      string: ! "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<!DOCTYPE \nRateResponse
+        SYSTEM \"http://www.shipwire.com/exec/download/RateResponse.dtd\">\n<RateResponse>\n
+        \ <Status>OK</Status>\n  <Order sequence=\"1\">\n    <Quotes></Quotes>\n  </Order>\n
+        \ <ProcessingTime units=\"ms\">715</ProcessingTime>\n</RateResponse>"
+    http_version: 
+  recorded_at: Tue, 06 Nov 2012 13:52:48 GMT
+recorded_with: VCR 2.2.2

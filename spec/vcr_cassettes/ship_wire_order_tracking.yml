@@ -1,0 +1,69 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.shipwire.com/exec/TrackingServices.php
+    body:
+      encoding: US-ASCII
+      string: ! "<?xml version=\"1.0\"?>\n<TrackingUpdate>\n  <Username>chris@spreecommerce.com</Username>\n
+        \ <Password>GBb4gv6wCjVeHV</Password>\n  <Server>Test</Server>\n  <Bookmark>2</Bookmark>\n</TrackingUpdate>\n"
+    headers: {}
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 06 Nov 2012 15:12:10 GMT
+      Server:
+      - Apache
+      Set-Cookie:
+      - PHPSESSID=qq4tba9vec28b4pm690k7dh974; path=/
+      Expires:
+      - Mon, 26 Jul 1997 05:00:00 GMT
+      Cache-Control:
+      - no-store, no-cache, must-revalidate
+      - post-check=0, pre-check=0
+      Pragma:
+      - no-cache
+      Last-Modified:
+      - Tue, 06 Nov 2012 15:12:10 GMT
+      Vary:
+      - Accept-Encoding
+      P3p:
+      - policyref="/w3c/p3p.xml", CP="COM CNT INT NAV PUR STA UNI CAO DSP CUR o i
+        OUR IND"
+      X-Trace:
+      - 1B54652B841C29B0E7E88E3D50E8E448B4775103B5BEFCA9B197A44CB5
+      Content-Length:
+      - '1986'
+      Content-Type:
+      - application/xml; charset=utf-8
+    body:
+      encoding: US-ASCII
+      string: ! "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<!DOCTYPE TrackingUpdateResponse
+        SYSTEM \"http://www.shipwire.com/exec/download/TrackingUpdateResponse.dtd\">\n<TrackingUpdateResponse>\n
+        \ <Status>0</Status>\n  <Order id=\"40298\" shipwireId=\"1234567890-1234567-1\"
+        shipped=\"NO\" shipper=\"\" shipDate=\"2011-03-14 11:11:40\"\n  expectedDeliveryDate=\"2011-03-22
+        00:00:00\" returned=\"NO\" href=\"https://app.shipwire.com/c/t/xxx1:yyy1\"\n
+        \ affiliateStatus=\"canceled\" manuallyEdited=\"NO\" />\n  <Order id=\"40298\"
+        shipwireId=\"1234567890-1234568-1\" shipped=\"YES\" shipper=\"USPS FC\"\n
+        \ shipperFullName=\"USPS First-Class Mail Parcel + Delivery Confirmation\"
+        shipDate=\"2011-03-15 10:40:06\"\n  expectedDeliveryDate=\"2011-03-22 00:00:00\"
+        handling=\"0.00\" shipping=\"4.47\" packaging=\"0.00\" total=\"4.47\"\n  returned=\"YES\"
+        returnDate=\"2011-05-04 17:33:25\" returnCondition=\"GOOD\" href=\"https://app.shipwire.com/c/t/xxx1:yyy2\"\n
+        \ affiliateStatus=\"shipwireFulfilled\" manuallyEdited=\"NO\">\n    <TrackingNumber
+        carrier=\"USPS\"\n    href=\"http://trkcnfrm1.smi.usps.com/PTSInternetWeb/InterLabelInquiry.do?origTrackNum=9400110200793472606087\">\n
+        \   9400110200793472606087</TrackingNumber>\n  </Order>\n  <Order id=\"40298\"
+        shipwireId=\"1234567890-1234569-1\" shipped=\"YES\" shipper=\"USPS FC\"\n
+        \ shipperFullName=\"USPS First-Class Mail Parcel + Delivery Confirmation\"
+        shipDate=\"2011-04-08 09:33:10\"\n  expectedDeliveryDate=\"2011-04-15 00:00:00\"
+        handling=\"0.00\" shipping=\"4.47\" packaging=\"0.00\" total=\"4.47\"\n  returned=\"NO\"
+        href=\"https://app.shipwire.com/c/t/xxx1:yyy3\" affiliateStatus=\"shipwireFulfilled\"
+        manuallyEdited=\"NO\">\n    <TrackingNumber carrier=\"USPS\"\n    href=\"http://trkcnfrm1.smi.usps.com/PTSInternetWeb/InterLabelInquiry.do?origTrackNum=9400110200793596422990\">\n
+        \   9400110200793596422990</TrackingNumber>\n  </Order>\n  <TotalOrders>3</TotalOrders>\n
+        \ <TotalShippedOrders>2</TotalShippedOrders>\n  <TotalProducts>8</TotalProducts>\n
+        \ <Bookmark>2011-10-22 14:13:16</Bookmark>\n  <ProcessingTime units=\"ms\">10</ProcessingTime>\n</TrackingUpdateResponse>"
+    http_version: 
+  recorded_at: Tue, 06 Nov 2012 15:12:10 GMT
+recorded_with: VCR 2.2.2
