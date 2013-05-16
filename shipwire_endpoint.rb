@@ -1,7 +1,7 @@
 require File.expand_path(File.dirname(__FILE__) + '/lib/ship_wire.rb')
 Dir['./lib/**/*.rb'].each { |f| require f }
 
-class ShipWireEndpoint < EndpointBase
+class ShipwireEndpoint < EndpointBase
   set :logging, true
 
   post '/order' do
