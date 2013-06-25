@@ -12,7 +12,6 @@ class OrderTracking < ShipWire
     if response['TrackingUpdateResponse']['Status'] == 'Error'
 
       return [ 500, { 'message_id' => message_id,
-               'code' => 500,
                'shipwire_response' => response['TrackingUpdateResponse'] } ]
 
     else
@@ -24,7 +23,6 @@ class OrderTracking < ShipWire
       end
 
       return [ 200, { 'message_id' => message_id,
-               'code' => 200,
                'messages' => msgs,
                'shipwire_response' => response['TrackingUpdateResponse'] } ]
 
@@ -35,7 +33,7 @@ class OrderTracking < ShipWire
 
   def create_message(shipment)
     {
-       key: 'shipment:confirmation',
+       key: 'shipment:dispatch',
        payload: {
          shipment_number: shipment['id'],
          tracking_number: shipment['TrackingNumber']['__content__'].strip,

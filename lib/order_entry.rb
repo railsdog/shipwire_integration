@@ -12,13 +12,11 @@ class OrderEntry < ShipWire
     if response['SubmitOrderResponse']['Status'] == 'Error'
       return [ 500, { 'message_id' => message_id,
                'order_number' => order.number,
-               'code' => 500,
                'shipwire_response' => response['SubmitOrderResponse'] } ]
 
     else
       return [ 200, { 'message_id' => message_id,
                'order_number' => order.number,
-               'code' => 200,
                'shipwire_response' => response['SubmitOrderResponse'] } ]
     end
   end

@@ -1,6 +1,6 @@
 GIT
   remote: git@github.com:spree/endpoint_base.git
-  revision: c40b9b729247298fc7e91bc4f1f8659388db1d7c
+  revision: 885403ef1a336cf152e056f9a1803bde9d4c2167
   specs:
     endpoint_base (2.0)
       active_support
@@ -15,7 +15,7 @@ GEM
       activesupport (= 3.0.0)
     activesupport (3.0.0)
     addressable (2.3.2)
-    backports (3.3.0)
+    backports (3.3.2)
     capistrano (2.14.2)
       highline
       net-scp (>= 1.0.0)
