@@ -33,7 +33,7 @@ class OrderTracking < ShipWire
 
   def create_message(shipment)
     {
-       key: 'shipment:dispatch',
+       message: 'shipment:dispatch',
        payload: {
          shipment_number: shipment['id'],
          tracking_number: shipment['TrackingNumber']['__content__'].strip,
