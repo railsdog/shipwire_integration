@@ -21,7 +21,7 @@
                 ]
             },
             "recommends": {
-                "keys": [
+                "messages": [
                     "order:new"
                 ]
             },
@@ -44,7 +44,7 @@
                 ]
             },
             "recommends": {
-                "keys": [
+                "messages": [
                     "shipment:dispatch:poll"
                 ]
             },
