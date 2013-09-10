@@ -3,6 +3,7 @@
     "display": "Shipwire",
     "description": "Order fulfillment and tracking using Shipwire",
     "help": "http://guides.spreecommerce.com/integration/endpoints/shipwire",
+    "icon_url": "shipwire.png",
     "consumers": [
         {
             "name": "order",
