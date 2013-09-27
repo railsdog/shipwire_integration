@@ -21,8 +21,8 @@ class InventoryStatus < ShipWire
   def xml_body
     builder = Nokogiri::XML::Builder.new do |xml|
       xml.InventoryUpdate {
-        xml.Username config[:username]
-        xml.Password config[:password]
+        xml.Username config['username']
+        xml.Password config['password']
         xml.Server server_mode
       }
     end

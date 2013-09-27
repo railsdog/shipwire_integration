@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe OrderTracking do
-  let(:config) { { username: 'chris@spreecommerce.com', password: 'GBb4gv6wCjVeHV', order_tracking_bookmark: 1 } }
+  let(:config) { { 'username' => 'chris@spreecommerce.com', 'password' => 'GBb4gv6wCjVeHV', 'order_tracking_bookmark' => 1 } }
 
   subject { described_class.new({}, 'a123', config) }
 

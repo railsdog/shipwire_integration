@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe InventoryStatus do
-  let(:config) { { username: 'chris@spreecommerce.com', password: 'GBb4gv6wCjVeHV', order_tracking_bookmark: 1 } }
+  let(:config) { { 'username' => 'chris@spreecommerce.com', 'password' => 'GBb4gv6wCjVeHV', 'order_tracking_bookmark' => 1 } }
 
   subject { described_class.new({}, 'a123', config) }
 
@@ -19,6 +19,6 @@ describe InventoryStatus do
   it 'builds xml body' do
     xml = subject.send :xml_body
     xml.should match '<Username>chris@spreecommerce.com</Username>'
+    xml.should match '<Password>GBb4gv6wCjVeHV</Password>'
   end
-
 end

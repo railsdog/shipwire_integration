@@ -4,6 +4,7 @@ Dir['./lib/**/*.rb'].each { |f| require f }
 class ShipwireEndpoint < EndpointBase
   set :logging, true
 
+  # TODO move out status codes to here
   post '/order' do
     order_entry = OrderEntry.new(@message[:payload], @message[:message_id], @config)
     process_result *order_entry.consume

@@ -1,8 +1,8 @@
 require 'spec_helper'
 
 describe OrderEntry do
-  let(:config) { { username: 'chris@spreecommerce.com', password: 'GBb4gv6wCjVeHV', order_tracking_bookmark: 1 } }
-  let(:payload) { {'order' => {'actual' => Factories.order }, 'shipment_number' => 'H438105531460' } }
+  let(:config) { { 'username' => 'chris@spreecommerce.com', 'password' => 'GBb4gv6wCjVeHV', 'order_tracking_bookmark' => 1 } }
+  let(:payload) { Factories.payload }
 
   subject { described_class.new(payload, 'a123', config) }
 
@@ -25,12 +25,12 @@ describe OrderEntry do
   end
 
   it 'builds xml body' do
-    subject.stub(:order => Order.new(payload['order']['actual'], payload['shipment_number']) )
+    subject.stub(:order => Order.new(payload['shipment']))
     xml = subject.send :xml_body
     xml.should match '<Username>chris@spreecommerce.com</Username>'
-    xml.should match '<State>NY</State>'
+    xml.should match '<State>Maryland</State>'
     xml.should match '<Item num="0">'
-    xml.should match '<Code>ROR-00011</Code>'
+    xml.should match '<Code>SPR-00001</Code>'
   end
 
 end

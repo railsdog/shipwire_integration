@@ -7,13 +7,13 @@ describe ShipwireEndpoint do
   end
 
   let(:params) { {'store_id' => '123229227575e4645c000001',
-                  'payload' => { 'order' => { 'actual' => Factories.order },
-                                 'parameters' => [
-                                    { name: 'username', value: 'chris@spreecommerce.com' },
-                                    { name: 'password', value: 'GBb4gv6wCjVeHV' },
-                                    { name: 'order_tracking_bookmark', value: 1 },
-                                    { name: 'shipment_number', value: 'H438105531460' } ] },
-                  'message_id' => 'abc'  } }
+                  'message_id' => 'abc',
+                  'payload' => Factories.payload.merge(
+                    'parameters' => 
+                      [ { name: 'username', value: 'chris@spreecommerce.com' },
+                      { name: 'password', value: 'GBb4gv6wCjVeHV' },
+                      { name: 'order_tracking_bookmark', value: 1 } ] )
+                  } }
 
   it "should respond to POST /order" do
     OrderEntry.should_receive(:new).with(params['payload'], params['message_id'], anything).and_return(mock(:consume => {}))

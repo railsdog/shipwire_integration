@@ -5,7 +5,7 @@ class OrderEntry < ShipWire
   attr_reader :order
 
   def consume
-    @order = Order.new(payload['order']['actual'], payload['shipment_number'])
+    @order = Order.new(payload['shipment'])
 
     response = self.class.post('/FulfillmentServices.php', :body => xml_body)
 
@@ -26,8 +26,8 @@ class OrderEntry < ShipWire
   def xml_body
     builder = Nokogiri::XML::Builder.new do |xml|
       xml.OrderList {
-        xml.Username config[:username]
-        xml.Password config[:password]
+        xml.Username config['username']
+        xml.Password config['password']
         xml.Server server_mode
         xml.Referer 'SPREE'
         xml.Order(:id => order.shipment_number) {
@@ -36,22 +36,22 @@ class OrderEntry < ShipWire
           xml.Shipping 'GD'
           xml.AddressInfo(:type => 'ship') {
             xml.Name {
-              xml.Full order.ship_full_name
+              xml.Full order.shipping_full_name
             }
-            xml.Phone order.ship_address['phone']
+            xml.Phone order.shipping_address['phone']
             xml.Email order.email
-            xml.Address1 order.ship_address['address1']
-            xml.Address2 order.ship_address['address2']
-            xml.City order.ship_address['city']
-            xml.State order.ship_state
-            xml.Country order.ship_country
-            xml.Zip order.ship_address['zipcode']
+            xml.Address1 order.shipping_address['address1']
+            xml.Address2 order.shipping_address['address2']
+            xml.City order.shipping_address['city']
+            xml.State order.shipping_state
+            xml.Country order.shipping_country
+            xml.Zip order.shipping_address['zipcode']
           }
 
-          order.shipment_items.each_with_index do |(variant_id, units), index|
+          order.shipment_items.each_with_index do |unit, index|
             xml.Item(:num => index) {
-              xml.Code order.variant_sku(variant_id)
-              xml.Quantity units.size
+              xml.Code order.variant_sku(unit['variant_id'])
+              xml.Quantity unit['quantity']
             }
           end
         }

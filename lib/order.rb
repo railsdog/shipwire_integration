@@ -1,78 +1,71 @@
 class Order
-  attr_reader :shipment, :shipment_number
+  attr_reader :shipment,
+              :shipment_number,
+              :order_number
 
-  def initialize(order_hash={}, shipment_number=nil)
-    @order_hash = order_hash
-    if @order_hash.key?('order')
-      @order_hash = @order_hash['order']
-    end
-
-    @shipment_number = shipment_number
-
-    @shipment = @order_hash['shipments'].detect do |shipment|
-      shipment = shipment['shipment'] if shipment.key?('shipment')
-      shipment['number'] == @shipment_number
-    end
-
-    if @shipment && @shipment.key?('shipment')
-      @shipment = @shipment['shipment']
-    end
+  def initialize(shipment_hash={})
+    @shipment = shipment_hash
+    @shipment_number = shipment['number']
+    @order_number = shipment['order_number']
 
     validate!
+    validate_address!
   end
 
   def validate!
     raise 'order number required' unless number
     raise 'shipment number required' unless shipment_number
-    validate_address!(ship_address)
   end
 
-  def validate_address!(address)
-    raise 'address1 required' unless address['address1']
-    raise 'city required' unless address['city']
-    raise 'country required' unless address['country']['iso']
-    raise 'zipcode required' unless address['zipcode']
+  def validate_address!
+    raise 'address1 required' unless shipping_address1
+    raise 'city required' unless shipping_city
+    raise 'country required' unless shipping_country
+    raise 'zipcode required' unless shipping_zipcode
   end
 
   def number
-    @order_hash['number']
+    shipment['number']
   end
 
   def email
-    @order_hash['email']
+    shipment['email']
   end
 
-  def ship_address
-    @order_hash['ship_address']
+  def shipping_address
+    shipment['shipping_address']
   end
 
-  def ship_state
-    ship_address['state']['abbr']
+  def shipping_address1
+    shipping_address['address1']
   end
 
-  def ship_country
-    ship_address['country']['iso']
+  def shipping_city
+    shipping_address['city']
   end
 
-  def ship_full_name
-    "#{ship_address['firstname']} #{ship_address['lastname']}"
+  def shipping_state
+    shipping_address['state']
+  end
+
+  def shipping_country
+    shipping_address['country']
+  end
+
+  def shipping_zipcode
+    shipping_address['zipcode']
+  end
+
+  def shipping_full_name
+    "#{shipping_address['firstname']} #{shipping_address['lastname']}"
   end
 
   def shipment_items
-    units = @shipment['inventory_units'].map do |inventory_unit|
-      inventory_unit.key?('inventory_unit') ? inventory_unit['inventory_unit'] : inventory_unit
-    end
-
-    units.group_by { |unit| unit['variant_id'] }
+    shipment['items']
   end
 
   def variant_sku(variant_id)
-    @variants ||= @order_hash['line_items'].map do |line_item|
-      line_item = line_item['line_item'] if line_item.key?('line_item')
-      line_item['variant']
-    end
-
-    @variants.detect { |v| v['id'] == variant_id }['sku']
+    shipment_items.detect { |v| v['variant_id'] == variant_id }['sku']
   end
 
 end

@@ -9,9 +9,14 @@ class ShipWire
 
   def initialize(payload, message_id, config={})
     @payload = payload
-    @config = config
     @message_id = message_id
-    raise AuthenticationError if @config[:username].nil? || @config[:password].nil?
+    @config = config
+
+    authenticate!
+  end
+
+  def authenticate!
+    raise AuthenticationError if @config['username'].nil? || @config['password'].nil?
   end
 
   def server_mode

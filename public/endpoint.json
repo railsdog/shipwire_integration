@@ -4,7 +4,7 @@
     "description": "Order fulfillment and tracking using Shipwire",
     "help": "http://guides.spreecommerce.com/integration/endpoints/shipwire",
     "icon_url": "shipwire.png",
-    "consumers": [
+    "services": [
         {
             "name": "order",
             "path": "/order",
@@ -46,14 +46,14 @@
             },
             "recommends": {
                 "messages": [
-                    "shipment:dispatch:poll"
+                    "shipment:confirm:poll"
                 ]
             },
             "produces": {
                 "messages": [
                     {
-                        "message": "shipment:dispatch",
-                        "schema": "/shipment_dispatch.json"
+                        "message": "shipment:confirm",
+                        "schema": "/shipment_confirm.json"
                     }
                 ]
             }

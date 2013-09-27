@@ -33,22 +33,26 @@ class OrderTracking < ShipWire
 
   def create_message(shipment)
     {
-       message: 'shipment:dispatch',
-       payload: {
-         shipment_number: shipment['id'],
-         tracking_number: shipment['TrackingNumber']['__content__'].strip,
-         tracking_url: shipment['TrackingNumber']['href'],
-         carrier: shipment['TrackingNumber']['carrier'],
-         shipped_date: Time.parse(shipment['shipDate']).utc,
-         delivery_date: Time.parse(shipment['expectedDeliveryDate']).utc }
+      message: 'shipment:confirm',
+      payload: {
+        order: {},
+        shipment: {
+          number: shipment['id'],
+          tracking: shipment['TrackingNumber']['__content__'].strip,
+          tracking_url: shipment['TrackingNumber']['href'],
+          carrier: shipment['TrackingNumber']['carrier'],
+          shipped_date: Time.parse(shipment['shipDate']).utc,
+          delivery_date: Time.parse(shipment['expectedDeliveryDate']).utc
+        }
+      }
     }
   end
 
   def xml_body
     builder = Nokogiri::XML::Builder.new do |xml|
       xml.TrackingUpdate {
-        xml.Username config[:username]
-        xml.Password config[:password]
+        xml.Username config['username']
+        xml.Password config['password']
         xml.Server server_mode
         xml.Bookmark '2'
       }
