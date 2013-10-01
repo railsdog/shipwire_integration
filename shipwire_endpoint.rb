@@ -4,7 +4,7 @@ Dir['./lib/**/*.rb'].each { |f| require f }
 class ShipwireEndpoint < EndpointBase
   set :logging, true
 
-  post '/order' do    
+  post '/send_shipment' do    
     begin
 	  shipment_entry = ShipmentEntry.new(@message[:payload], @message[:message_id], @config)
 	  response  = shipment_entry.consume

@@ -6,9 +6,9 @@
     "icon_url": "shipwire.png",
     "services": [
         {
-            "name": "order",
-            "path": "/order",
-            "description": "Send order details to Shipwire on completion",
+            "name": "send_shipment",
+            "path": "/send_shipment",
+            "description": "Send shipment details to Shipwire on completion",
             "requires": {
                 "parameters": [
                     {
@@ -22,16 +22,14 @@
                 ]
             },
             "recommends": {
-                "messages": [
-                    "order:new"
-                ]
+                "messages": ["shipment:ready"]
             },
             "produces": {}
         },
         {
             "name": "tracking",
             "path": "/tracking",
-            "description": "Track order shipment dispatches.",
+            "description": "Track shipment dispatches.",
             "requires": {
                 "parameters": [
                     {
@@ -45,9 +43,7 @@
                 ]
             },
             "recommends": {
-                "messages": [
-                    "shipment:confirm:poll"
-                ]
+                "messages": ["shipment:confirm:poll"]
             },
             "produces": {
                 "messages": [

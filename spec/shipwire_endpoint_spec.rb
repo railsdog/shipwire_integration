@@ -15,10 +15,10 @@ describe ShipwireEndpoint do
                       { name: 'order_tracking_bookmark', value: 1 } ] )
                   } }
 
-  it "should respond to POST /order" do
+  it "should respond to POST /send_shipment" do
     ShipmentEntry.should_receive(:new).with(params['payload'], params['message_id'], anything).and_return(mock(:consume => {}))
 
-    post '/order', params.to_json, auth
+    post '/send_shipment', params.to_json, auth
     last_response.body.should include("notifications")
     last_response.body.should include("message_id")
     last_response.status.should eq 200

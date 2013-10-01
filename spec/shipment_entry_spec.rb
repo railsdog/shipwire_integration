@@ -7,7 +7,7 @@ describe ShipmentEntry do
   subject { described_class.new(payload, 'a123', config) }
 
   it 'posts to the FulfillmentServices api' do
-    VCR.use_cassette('ship_wire_order_entry') do
+    VCR.use_cassette('ship_wire_shipment_entry') do
       expect {
         response = subject.consume
         response['shipwire_response'].should have_key('TransactionId')
