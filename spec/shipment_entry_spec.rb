@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe OrderEntry do
+describe ShipmentEntry do
   let(:config) { { 'username' => 'chris@spreecommerce.com', 'password' => 'GBb4gv6wCjVeHV', 'order_tracking_bookmark' => 1 } }
   let(:payload) { Factories.payload }
 

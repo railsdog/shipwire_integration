@@ -6,8 +6,8 @@ class ShipwireEndpoint < EndpointBase
 
   post '/order' do    
     begin
-	  order_entry = OrderEntry.new(@message[:payload], @message[:message_id], @config)
-	  response  = order_entry.consume
+	  shipment_entry = ShipmentEntry.new(@message[:payload], @message[:message_id], @config)
+	  response  = shipment_entry.consume
 
 	  msg = success_notification(response)
 	  code = 200

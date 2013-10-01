@@ -1,5 +1,5 @@
 # a ShipWire.Order.Id is the Spree.Order.Shipment.Number
-class OrderEntry < ShipWire
+class ShipmentEntry < ShipWire
   # register Keys::AUGURY_ORDER_NEW
 
   attr_reader :order
