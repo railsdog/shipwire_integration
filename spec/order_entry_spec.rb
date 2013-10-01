@@ -9,8 +9,7 @@ describe OrderEntry do
   it 'posts to the FulfillmentServices api' do
     VCR.use_cassette('ship_wire_order_entry') do
       expect {
-        code, response = subject.consume
-        code.should == 200
+        response = subject.consume
         response['shipwire_response'].should have_key('TransactionId')
       }.to_not raise_error
     end
@@ -18,10 +17,12 @@ describe OrderEntry do
 
   it 'handles failure responses' do
     subject.class.should_receive(:post).and_return({'SubmitOrderResponse' => { 'Status' => 'Error' }})
-    code, response = subject.consume
-    code.should == 500
-    response['shipwire_response'].should_not have_key('TransactionId')
-    response['shipwire_response'].should have_key('Status')
+    expect {
+      response = subject.consume
+      response.should have_key('shipwire_response')
+      response['shipwire_response'].should_not have_key('TransactionId')
+      response['shipwire_response'].should have_key('Status')
+    }.to raise_error ShipWireSubmitOrderError
   end
 
   it 'builds xml body' do

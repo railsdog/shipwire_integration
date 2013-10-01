@@ -10,15 +10,10 @@ class OrderEntry < ShipWire
     response = self.class.post('/FulfillmentServices.php', :body => xml_body)
 
     if response['SubmitOrderResponse']['Status'] == 'Error'
-      return [ 500, { 'message_id' => message_id,
-               'order_number' => order.number,
-               'shipwire_response' => response['SubmitOrderResponse'] } ]
-
-    else
-      return [ 200, { 'message_id' => message_id,
-               'order_number' => order.number,
-               'shipwire_response' => response['SubmitOrderResponse'] } ]
+      raise ShipWireSubmitOrderError, 'shipwire_response' => response['SubmitOrderResponse']
     end
+
+    return { 'shipwire_response' => response['SubmitOrderResponse'] }
   end
 
   private

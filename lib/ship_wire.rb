@@ -24,5 +24,7 @@ class ShipWire
     ENV['SHIPWIRE_ENDPOINT_SERVER_MODE']
   end
 
-  class AuthenticationError < StandardError; end
 end
+
+class AuthenticationError < StandardError; end
+class ShipWireSubmitOrderError < StandardError; end
