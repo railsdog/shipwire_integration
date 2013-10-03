@@ -7,8 +7,7 @@ describe OrderTracking do
 
   it 'posts to the TrackingServices api' do
     VCR.use_cassette('ship_wire_order_tracking') do
-      code, response = subject.consume
-      code.should == 200
+      response = subject.consume
       response['messages'].size.should == 2
       response['shipwire_response'].should have_key('Order')
       response['shipwire_response']['Order'].size == 3 #one not shipped

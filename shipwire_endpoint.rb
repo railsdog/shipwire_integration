@@ -1,4 +1,3 @@
-require 'pry'
 require File.expand_path(File.dirname(__FILE__) + '/lib/ship_wire.rb')
 Dir['./lib/**/*.rb'].each { |f| require f }
 
@@ -21,8 +20,17 @@ class ShipwireEndpoint < EndpointBase
   end
 
   post '/tracking' do
-    order_tracking = OrderTracking.new(@message[:payload], @message[:message_id], @config)
-    process_result *order_tracking.consume
+    begin
+      order_tracking = OrderTracking.new(@message[:payload], @message[:message_id], @config)
+      msg = order_tracking.consume
+
+      code = 200
+    rescue => e
+      msg = error_notification(e)
+      code = 500
+    end
+
+    process_result code, base_msg.merge(msg)
   end
 
   private

@@ -10,10 +10,7 @@ class OrderTracking < ShipWire
     response = self.class.post('/TrackingServices.php', :body => xml_body)
 
     if response['TrackingUpdateResponse']['Status'] == 'Error'
-
-      return [ 500, { 'message_id' => message_id,
-               'shipwire_response' => response['TrackingUpdateResponse'] } ]
-
+      raise SendError, response['TrackingUpdateResponse']['ErrorMessage']
     else
       msgs = []
 
@@ -22,15 +19,13 @@ class OrderTracking < ShipWire
         msgs << create_message(shipment)
       end
 
-      return [ 200, { 'message_id' => message_id,
-               'messages' => msgs,
-               'shipwire_response' => response['TrackingUpdateResponse'] } ]
-
+      return { 'messages' => msgs, 'shipwire_response' => response['TrackingUpdateResponse'] }
     end
   end
 
   private
 
+  ##TODO add order_number
   def create_message(shipment)
     {
       message: 'shipment:confirm',
@@ -38,11 +33,11 @@ class OrderTracking < ShipWire
         order: {},
         shipment: {
           number: shipment['id'],
-          tracking: shipment['TrackingNumber']['__content__'].strip,
+          tracking: shipment['TrackingNumber']['#text'],
           tracking_url: shipment['TrackingNumber']['href'],
           carrier: shipment['TrackingNumber']['carrier'],
-          shipped_date: Time.parse(shipment['shipDate']).utc,
-          delivery_date: Time.parse(shipment['expectedDeliveryDate']).utc
+          shipped_date: Time.parse(shipment['shipDate']).utc.to_s,
+          delivery_date: Time.parse(shipment['expectedDeliveryDate']).utc.to_s
         }
       }
     }

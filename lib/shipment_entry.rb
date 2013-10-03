@@ -1,4 +1,3 @@
-Dir["./spec/support/**/*.rb"].each {|f| require f}
 # a ShipWire.Order.Id is the Spree.Order.Shipment.Number
 class ShipmentEntry < ShipWire
   # register Keys::AUGURY_ORDER_NEW
