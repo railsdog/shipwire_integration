@@ -28,3 +28,4 @@ end
 
 class AuthenticationError < StandardError; end
 class ShipWireSubmitOrderError < StandardError; end
+class SendError < StandardError; end

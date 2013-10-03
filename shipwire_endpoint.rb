@@ -1,3 +1,4 @@
+require 'pry'
 require File.expand_path(File.dirname(__FILE__) + '/lib/ship_wire.rb')
 Dir['./lib/**/*.rb'].each { |f| require f }
 
@@ -6,11 +7,11 @@ class ShipwireEndpoint < EndpointBase
 
   post '/send_shipment' do    
     begin
-	  shipment_entry = ShipmentEntry.new(@message[:payload], @message[:message_id], @config)
-	  response  = shipment_entry.consume
+  	  shipment_entry = ShipmentEntry.new(@message[:payload], @message[:message_id], @config)
+  	  response  = shipment_entry.consume
 
-	  msg = success_notification(response)
-	  code = 200
+  	  msg = success_notification(response)
+  	  code = 200
     rescue => e
       msg = error_notification(e)
       code = 500
@@ -21,7 +22,7 @@ class ShipwireEndpoint < EndpointBase
 
   post '/tracking' do
     order_tracking = OrderTracking.new(@message[:payload], @message[:message_id], @config)
-    process_result *order_entry.consume
+    process_result *order_tracking.consume
   end
 
   private
@@ -43,7 +44,7 @@ class ShipwireEndpoint < EndpointBase
     { notifications:
       [
       	{ level: 'error',
-          subject: e.message,
+          subject: e.message.strip,
           description: e.backtrace.to_a.join('\n\t') }
       ]
     }

@@ -1,3 +1,4 @@
+Dir["./spec/support/**/*.rb"].each {|f| require f}
 # a ShipWire.Order.Id is the Spree.Order.Shipment.Number
 class ShipmentEntry < ShipWire
   # register Keys::AUGURY_ORDER_NEW
@@ -8,12 +9,15 @@ class ShipmentEntry < ShipWire
     @order = Order.new(payload['shipment'])
 
     response = self.class.post('/FulfillmentServices.php', :body => xml_body)
-
-    if response['SubmitOrderResponse']['Status'] == 'Error'
-      raise ShipWireSubmitOrderError, 'shipwire_response' => response['SubmitOrderResponse']
+    response = response['SubmitOrderResponse']
+    
+    if response['Status'] == 'Error'
+      raise SendError, response['ErrorMessage']
+    elsif response['OrderInformation'] and response['OrderInformation']['Order']['Exception']
+      raise ShipWireSubmitOrderError, response['OrderInformation']['Order']['Exception']['__content__']
     end
 
-    return { 'shipwire_response' => response['SubmitOrderResponse'] }
+    return { 'shipwire_response' => response }
   end
 
   private
@@ -54,5 +58,4 @@ class ShipmentEntry < ShipWire
     end
     builder.to_xml
   end
-
 end

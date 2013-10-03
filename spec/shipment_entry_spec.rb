@@ -22,7 +22,7 @@ describe ShipmentEntry do
       response.should have_key('shipwire_response')
       response['shipwire_response'].should_not have_key('TransactionId')
       response['shipwire_response'].should have_key('Status')
-    }.to raise_error ShipWireSubmitOrderError
+    }.to raise_error SendError
   end
 
   it 'builds xml body' do
