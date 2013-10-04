@@ -26,7 +26,7 @@ module Factories
 			                      "Service" => "(Pending)",
 			                         "Cost" => "(Pending)"
 			                },
-			                     "number" => "R159875257",
+			                     "number" => "99999-R159875257",
 			                         "id" => "1352214142-773022-1",
 			                     "status" => "accepted"
 			            }
@@ -45,7 +45,7 @@ module Factories
 			    "Status" => "0",
 			    "Order" => [
 			      {
-			        "id" => "40298",
+			        "id" => "99999-40298",
 			        "shipwireId" => "1234567890-1234567-1",
 			        "warehouse" => "Chicago",
 			        "shipped" => "NO",
@@ -57,7 +57,7 @@ module Factories
 			        "manuallyEdited" => "NO"
 			      },
 			      {
-			        "id" => "40298",
+			        "id" => "R638627560-H431137938",
 			        "shipwireId" => "1234567890-1234568-1",
 			        "warehouse" => "Philadelphia",
 			        "shipped" => "YES",
@@ -85,7 +85,7 @@ module Factories
 			        }
 			      },
 			      {
-			        "id" => "40298",
+			        "id" => "99999-40298",
 			        "shipwireId" => "1234567890-1234569-1",
 			        "warehouse" => "Chicago",
 			        "shipped" => "YES",

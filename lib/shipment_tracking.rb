@@ -1,3 +1,5 @@
+Dir["./spec/support/**/*.rb"].each {|f| require f}
+
 # The Order id we use to track is the Spree Shipment Number
 #
 # The <Bookmark> tag currently has three options:
@@ -7,7 +9,8 @@
 class ShipmentTracking < ShipWire
 
   def consume
-    response = self.class.post('/TrackingServices.php', :body => xml_body)
+    # response = self.class.post('/TrackingServices.php', :body => xml_body)
+    response = Factories.success_shipment_tracking_response
 
     if response['TrackingUpdateResponse']['Status'] == 'Error'
       raise SendError, response['TrackingUpdateResponse']['ErrorMessage']
@@ -25,7 +28,6 @@ class ShipmentTracking < ShipWire
 
   private
 
-  ##TODO add order_number
   def create_message(shipment)
     {
       message: 'shipment:confirm',
@@ -33,7 +35,8 @@ class ShipmentTracking < ShipWire
       payload: {
         order: {},
         shipment: {
-          number: shipment['id'],
+          number: shipment['id'].split(/-/).last,
+          order_number: shipment['id'].split(/-/).first,
           tracking: shipment['TrackingNumber']['#text'],
           tracking_url: shipment['TrackingNumber']['href'],
           carrier: shipment['TrackingNumber']['carrier'],

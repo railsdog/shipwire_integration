@@ -28,7 +28,7 @@ class ShipmentEntry < ShipWire
         xml.Password config['password']
         xml.Server server_mode
         xml.Referer 'SPREE'
-        xml.Order(:id => order.shipment_number) {
+        xml.Order(:id => "#{order.order_number}-#{order.shipment_number}") {
           xml.Warehouse '00'
           xml.SameDay 'NOT REQUESTED'
           xml.Shipping 'GD'
