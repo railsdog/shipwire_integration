@@ -29,6 +29,7 @@ class ShipmentTracking < ShipWire
   def create_message(shipment)
     {
       message: 'shipment:confirm',
+      inflate: true,
       payload: {
         order: {},
         shipment: {
