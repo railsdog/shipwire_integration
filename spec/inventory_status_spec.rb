@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe InventoryStatus do
-  let(:config) { { 'username' => 'chris@spreecommerce.com', 'password' => 'GBb4gv6wCjVeHV', 'order_tracking_bookmark' => 1 } }
+  let(:config) { { 'username' => 'chris@spreecommerce.com', 'password' => 'GBb4gv6wCjVeHV', 'shipment_tracking_bookmark' => 1 } }
 
   subject { described_class.new({}, 'a123', config) }
 

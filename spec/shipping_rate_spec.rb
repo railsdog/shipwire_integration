@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe ShippingRate do
-  let(:config) { { 'username' => 'chris@spreecommerce.com', 'password' => 'GBb4gv6wCjVeHV', 'order_tracking_bookmark' => 1 } }
+  let(:config) { { 'username' => 'chris@spreecommerce.com', 'password' => 'GBb4gv6wCjVeHV', 'shipment_tracking_bookmark' => 1 } }
   let(:payload) { Factories.payload }
 
   subject { described_class.new(payload, 'a123', config) }

@@ -21,8 +21,8 @@ class ShipwireEndpoint < EndpointBase
 
   post '/tracking' do
     begin
-      order_tracking = OrderTracking.new(@message[:payload], @message[:message_id], @config)
-      msg = order_tracking.consume
+      shipment_tracking = ShipmentTracking.new(@message[:payload], @message[:message_id], @config)
+      msg = shipment_tracking.consume
 
       code = 200
     rescue => e

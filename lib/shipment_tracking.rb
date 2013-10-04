@@ -4,7 +4,7 @@
 # “1″ for a dump of everything in the account
 # “2″ for a dump of everything since the last bookmark
 # “3″ for a dump of everything since the last bookmark AND reset the bookmark to right now
-class OrderTracking < ShipWire
+class ShipmentTracking < ShipWire
 
   def consume
     response = self.class.post('/TrackingServices.php', :body => xml_body)
