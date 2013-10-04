@@ -43,9 +43,9 @@ class ShipwireEndpoint < EndpointBase
       [
       	{ level: 'info',
           subject: 'Successfully Sent Shipment to Shipwire',
-          description: 'Successfully Sent Shipment to Shipwire' }.merge(response)
+          description: 'Successfully Sent Shipment to Shipwire' }
       ]
-    }
+    }.merge(response)
   end
 
   def error_notification(e)
