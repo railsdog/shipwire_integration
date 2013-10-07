@@ -43,7 +43,7 @@
                 ]
             },
             "recommends": {
-                "messages": ["shipment:confirm:poll"]
+                "messages": ["shipwire:shipment_results:poll"]
             },
             "produces": {
                 "messages": [
