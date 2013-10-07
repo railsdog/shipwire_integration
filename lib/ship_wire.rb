@@ -21,7 +21,7 @@ class ShipWire
 
   def server_mode
     # Augury.test? ? 'Test' : 'Production'
-    ENV['SHIPWIRE_ENDPOINT_SERVER_MODE']
+    (ENV['SHIPWIRE_ENDPOINT_SERVER_MODE'] || 'Test').capitalize
   end
 
 end

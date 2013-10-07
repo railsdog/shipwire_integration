@@ -34,7 +34,7 @@ class ShipmentTracking < ShipWire
         shipment: {
           number: shipment['id'].split(/-/).last,
           order_number: shipment['id'].split(/-/).first,
-          tracking: shipment['TrackingNumber']['#text'],
+          tracking: (shipment['TrackingNumber']['__content__'] || shipment['TrackingNumber']['#text']).strip,
           tracking_url: shipment['TrackingNumber']['href'],
           carrier: shipment['TrackingNumber']['carrier'],
           shipped_date: Time.parse(shipment['shipDate']).utc.to_s,
