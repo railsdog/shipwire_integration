@@ -1,5 +1,3 @@
-Dir["./spec/support/**/*.rb"].each {|f| require f}
-
 # The Order id we use to track is the Spree Shipment Number
 #
 # The <Bookmark> tag currently has three options:
@@ -40,7 +38,11 @@ class ShipmentTracking < ShipWire
           tracking_url: shipment['TrackingNumber']['href'],
           carrier: shipment['TrackingNumber']['carrier'],
           shipped_date: Time.parse(shipment['shipDate']).utc.to_s,
-          delivery_date: Time.parse(shipment['expectedDeliveryDate']).utc.to_s
+          delivery_date: Time.parse(shipment['expectedDeliveryDate']).utc.to_s,
+          cost: 0.0,
+          status: "",
+          stock_location: "",
+          shipping_method: "",
         }
       }
     }
