@@ -1,5 +1,11 @@
-=== Shipwire Endpoint
+# Shipwire Endpoint
 
-This is an endpoint application for the Spree Integrator platform.
+For a detailted explanation check out the [Spree Guides - Shipwire Endpoint](http://guides.spreecommerce.com/integration/shipwire_integration.html).
 
-For more details see: http://edgeguides.spreecommerce.com/integration/
+## Send Shipments
+
+* Send shipment details to Shipwire on completion
+
+## Shipment Tracking
+
+* Track shipment dispatches
