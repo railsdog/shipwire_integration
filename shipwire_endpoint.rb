@@ -51,9 +51,11 @@ class ShipwireEndpoint < EndpointBase
   def error_notification(e)
     { notifications:
       [
-      	{ level: 'error',
+      	{
+          level: 'error',
           subject: e.message.strip,
-          description: e.backtrace.to_a.join('\n\t') }
+          description: { "backtrace" => e.backtrace }.to_s
+        }
       ]
     }
   end
