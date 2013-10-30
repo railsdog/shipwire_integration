@@ -2,7 +2,7 @@
     "name": "shipwire",
     "display": "Shipwire",
     "description": "Order fulfillment and tracking using Shipwire",
-    "help": "http://guides.spreecommerce.com/integration/endpoints/shipwire_integration.html",
+    "help": "http://guides.spreecommerce.com/integration/shipwire_integration.html",
     "icon_url": "shipwire.png",
     "services": [
         {
@@ -13,11 +13,13 @@
                 "parameters": [
                     {
                         "name": "username",
-                        "description": "Shipwire username"
+                        "description": "Shipwire username",
+                        "data_type": "string"
                     },
                     {
                         "name": "password",
-                        "description": "Shipwire password"
+                        "description": "Shipwire password",
+                        "data_type": "string"
                     }
                 ]
             },
@@ -34,11 +36,13 @@
                 "parameters": [
                     {
                         "name": "username",
-                        "description": "Shipwire username"
+                        "description": "Shipwire username",
+                        "data_type": "string"
                     },
                     {
                         "name": "password",
-                        "description": "Shipwire password"
+                        "description": "Shipwire password",
+                        "data_type": "string"
                     }
                 ]
             },
