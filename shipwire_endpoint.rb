@@ -4,12 +4,12 @@ Dir['./lib/**/*.rb'].each { |f| require f }
 class ShipwireEndpoint < EndpointBase
   set :logging, true
 
-  post '/send_shipment' do    
+  post '/send_shipment' do
     begin
   	  shipment_entry = ShipmentEntry.new(@message[:payload], @message[:message_id], @config)
   	  response  = shipment_entry.consume
 
-  	  msg = success_notification(response)
+  	  msg = success_shipment_notification(response)
   	  code = 200
     rescue => e
       msg = error_notification(e)
@@ -22,8 +22,9 @@ class ShipwireEndpoint < EndpointBase
   post '/tracking' do
     begin
       shipment_tracking = ShipmentTracking.new(@message[:payload], @message[:message_id], @config)
-      msg = shipment_tracking.consume
+      response = shipment_tracking.consume
 
+      msg = success_tracking_notification(response)
       code = 200
     rescue => e
       msg = error_notification(e)
@@ -38,12 +39,22 @@ class ShipwireEndpoint < EndpointBase
   	{ 'message_id' => @message[:message_id] }
   end
 
-  def success_notification(response)
+  def success_shipment_notification(response)
     { notifications:
       [
       	{ level: 'info',
           subject: 'Successfully Sent Shipment to Shipwire',
           description: 'Successfully Sent Shipment to Shipwire' }
+      ]
+    }.merge(response)
+  end
+
+  def success_tracking_notification(response)
+    { notifications:
+      [
+      	{ level: 'info',
+          subject: 'Successfully Sent Shipment Tracking Information to Shipwire',
+          description: 'Successfully Sent Shipment Tracking Information to Shipwire' }
       ]
     }.merge(response)
   end
