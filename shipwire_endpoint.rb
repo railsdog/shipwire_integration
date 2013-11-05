@@ -43,8 +43,8 @@ class ShipwireEndpoint < EndpointBase
     { notifications:
       [
       	{ level: 'info',
-          subject: 'Successfully Sent Shipment to Shipwire',
-          description: 'Successfully Sent Shipment to Shipwire' }
+          subject: 'Successfully sent shipment to Shipwire',
+          description: 'Successfully sent shipment to Shipwire' }
       ]
     }.merge(response)
   end
@@ -53,8 +53,8 @@ class ShipwireEndpoint < EndpointBase
     { notifications:
       [
       	{ level: 'info',
-          subject: 'Successfully Sent Shipment Tracking Information to Shipwire',
-          description: 'Successfully Sent Shipment Tracking Information to Shipwire' }
+          subject: 'Successfully sent shipment tracking information to shipwire',
+          description: 'Successfully sent shipment tracking information to shipwire' }
       ]
     }.merge(response)
   end
