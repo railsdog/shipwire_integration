@@ -9,9 +9,9 @@ describe ShipwireEndpoint do
   let(:params) { {'store_id' => '123229227575e4645c000001',
                   'message_id' => 'abc',
                   'payload' => Factories.payload.merge(
-                    'parameters' => 
-                      [ { name: 'username', value: 'chris@spreecommerce.com' },
-                      { name: 'password', value: 'GBb4gv6wCjVeHV' },
+                    'parameters' =>
+                      [ { name: 'shipwire.username', value: 'chris@spreecommerce.com' },
+                      { name: 'shipwire.password', value: 'GBb4gv6wCjVeHV' },
                       { name: 'shipment_tracking_bookmark', value: 1 } ] )
                   } }
 

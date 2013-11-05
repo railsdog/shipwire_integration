@@ -16,7 +16,7 @@ class ShipWire
   end
 
   def authenticate!
-    raise AuthenticationError if @config['username'].nil? || @config['password'].nil?
+    raise AuthenticationError if @config['shipwire.username'].nil? || @config['shipwire.password'].nil?
   end
 
   def server_mode

@@ -31,8 +31,8 @@ class ShippingRate < ShipWire
   def xml_body
     builder = Nokogiri::XML::Builder.new do |xml|
       xml.RateRequest {
-        xml.Username config['username']
-        xml.Password config['password']
+        xml.Username config['shipwire.username']
+        xml.Password config['shipwire.password']
         xml.Server server_mode
         xml.Order(:id => order.shipment_number) {
           xml.Warehouse '00'
