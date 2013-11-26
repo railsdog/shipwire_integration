@@ -65,7 +65,8 @@ class ShipwireEndpoint < EndpointBase
       	{
           level: 'error',
           subject: e.message.strip,
-          description: { "backtrace" => e.backtrace }.to_s
+          description: e.message.strip,
+          backtrace: e.backtrace.to_a.join('\n\t')
         }
       ]
     }
