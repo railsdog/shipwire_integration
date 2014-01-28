@@ -47,7 +47,8 @@
                 ]
             },
             "recommends": {
-                "messages": ["shipwire:shipment_results:poll"]
+                "messages": ["shipwire:shipment_results:poll"],
+                "schedule": { "count": 1, "interval": "hour" },
             },
             "produces": {
                 "messages": [
