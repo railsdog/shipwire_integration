@@ -1,61 +1,48 @@
 {
-    "name": "shipwire",
-    "display": "Shipwire",
-    "description": "Order fulfillment and tracking using Shipwire",
-    "help": "http://guides.spreecommerce.com/integration/endpoints/shipwire",
-    "consumers": [
-        {
-            "name": "order",
-            "path": "/order",
-            "description": "Send order details to Shipwire on completion",
-            "requires": {
-                "parameters": [
-                    {
-                        "name": "username",
-                        "description": "Shipwire username"
-                    },
-                    {
-                        "name": "password",
-                        "description": "Shipwire password"
-                    }
-                ]
-            },
-            "recommends": {
-                "keys": [
-                    "order:new"
-                ]
-            },
-            "produces": {}
-        },
-        {
-            "name": "tracking",
-            "path": "/tracking",
-            "description": "Track order shipment dispatches.",
-            "requires": {
-                "parameters": [
-                    {
-                        "name": "username",
-                        "description": "Shipwire username"
-                    },
-                    {
-                        "name": "password",
-                        "description": "Shipwire password"
-                    }
-                ]
-            },
-            "recommends": {
-                "keys": [
-                    "shipment:dispatch:poll"
-                ]
-            },
-            "produces": {
-                "messages": [
-                    {
-                        "message": "shipment:dispatch",
-                        "schema": "/shipment_dispatch.json"
-                    }
-                ]
-            }
-        }
-    ]
+  "name": "shipwire",
+  "display": "Shipwire",
+  "description": "Order fulfillment and tracking using Shipwire",
+  "help": "http://guides.spreecommerce.com/integration/endpoints/shipwire",
+  "services": [
+  {
+    "name": "order",
+    "path": "/order",
+    "description": "Send order details to Shipwire on completion",
+    "requires": {
+      "parameters": [
+      {
+        "name": "username",
+        "description": "Shipwire username"
+      },
+      {
+        "name": "password",
+        "description": "Shipwire password"
+      }
+      ]
+    },
+    "recommends": {
+      "messages": ["order:new"]
+    }
+  },
+  {
+    "name": "tracking",
+    "path": "/tracking",
+    "description": "Track order shipment dispatches.",
+    "requires": {
+      "parameters": [
+      {
+        "name": "username",
+        "description": "Shipwire username"
+      },
+      {
+        "name": "password",
+        "description": "Shipwire password"
+      }
+      ]
+    },
+    "recommends": {
+      "messages": ["shipment:dispatch:poll"]
+    }
+  }
+  ]
 }
