@@ -25,8 +25,7 @@
             },
             "recommends": {
                 "messages": ["shipment:ready"]
-            },
-            "produces": {}
+            }
         },
         {
             "name": "tracking",
@@ -48,15 +47,7 @@
             },
             "recommends": {
                 "messages": ["shipwire:shipment_results:poll"],
-                "schedule": { "count": 1, "interval": "hour" },
-            },
-            "produces": {
-                "messages": [
-                    {
-                        "message": "shipment:confirm",
-                        "schema": "/shipment_confirm.json"
-                    }
-                ]
+                "schedule": { "count": 1, "interval": "hours" }
             }
         }
     ]
