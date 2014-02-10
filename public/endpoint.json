@@ -1,48 +1,54 @@
 {
-  "name": "shipwire",
-  "display": "Shipwire",
-  "description": "Order fulfillment and tracking using Shipwire",
-  "help": "http://guides.spreecommerce.com/integration/endpoints/shipwire",
-  "services": [
-  {
-    "name": "order",
-    "path": "/order",
-    "description": "Send order details to Shipwire on completion",
-    "requires": {
-      "parameters": [
-      {
-        "name": "username",
-        "description": "Shipwire username"
-      },
-      {
-        "name": "password",
-        "description": "Shipwire password"
-      }
-      ]
-    },
-    "recommends": {
-      "messages": ["order:new"]
-    }
-  },
-  {
-    "name": "tracking",
-    "path": "/tracking",
-    "description": "Track order shipment dispatches.",
-    "requires": {
-      "parameters": [
-      {
-        "name": "username",
-        "description": "Shipwire username"
-      },
-      {
-        "name": "password",
-        "description": "Shipwire password"
-      }
-      ]
-    },
-    "recommends": {
-      "messages": ["shipment:dispatch:poll"]
-    }
-  }
-  ]
+    "name": "shipwire",
+    "display": "Shipwire",
+    "description": "Order fulfillment and tracking using Shipwire",
+    "help": "http://guides.spreecommerce.com/integration/shipwire_integration.html",
+    "icon_url": "shipwire.png",
+    "services": [
+        {
+            "name": "send_shipment",
+            "path": "/send_shipment",
+            "description": "Send shipment details to Shipwire on completion",
+            "requires": {
+                "parameters": [
+                    {
+                        "name": "username",
+                        "description": "Shipwire username",
+                        "data_type": "string"
+                    },
+                    {
+                        "name": "password",
+                        "description": "Shipwire password",
+                        "data_type": "string"
+                    }
+                ]
+            },
+            "recommends": {
+                "messages": ["shipment:ready"]
+            }
+        },
+        {
+            "name": "tracking",
+            "path": "/tracking",
+            "description": "Track shipment dispatches.",
+            "requires": {
+                "parameters": [
+                    {
+                        "name": "username",
+                        "description": "Shipwire username",
+                        "data_type": "string"
+                    },
+                    {
+                        "name": "password",
+                        "description": "Shipwire password",
+                        "data_type": "string"
+                    }
+                ]
+            },
+            "recommends": {
+                "messages": ["shipwire:shipment_results:poll"],
+                "schedule": { "count": 1, "interval": "hours" }
+            }
+        }
+    ]
 }

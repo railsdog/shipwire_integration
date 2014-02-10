@@ -1,14 +1,13 @@
 require 'spec_helper'
 
-describe OrderTracking do
-  let(:config) { { username: 'chris@spreecommerce.com', password: 'GBb4gv6wCjVeHV', order_tracking_bookmark: 1 } }
+describe ShipmentTracking do
+  let(:config) { { 'shipwire.username' => 'chris@spreecommerce.com', 'shipwire.password' => 'GBb4gv6wCjVeHV', 'shipment_tracking_bookmark' => 1 } }
 
   subject { described_class.new({}, 'a123', config) }
 
   it 'posts to the TrackingServices api' do
-    VCR.use_cassette('ship_wire_order_tracking') do
-      code, response = subject.consume
-      code.should == 200
+    VCR.use_cassette('ship_wire_shipment_tracking') do
+      response = subject.consume
       response['messages'].size.should == 2
       response['shipwire_response'].should have_key('Order')
       response['shipwire_response']['Order'].size == 3 #one not shipped

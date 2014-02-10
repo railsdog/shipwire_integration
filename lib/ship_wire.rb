@@ -9,15 +9,23 @@ class ShipWire
 
   def initialize(payload, message_id, config={})
     @payload = payload
-    @config = config
     @message_id = message_id
-    raise AuthenticationError if @config[:username].nil? || @config[:password].nil?
+    @config = config
+
+    authenticate!
+  end
+
+  def authenticate!
+    raise AuthenticationError if @config['shipwire.username'].nil? || @config['shipwire.password'].nil?
   end
 
   def server_mode
     # Augury.test? ? 'Test' : 'Production'
-    ENV['SHIPWIRE_ENDPOINT_SERVER_MODE']
+    (ENV['SHIPWIRE_ENDPOINT_SERVER_MODE'] || 'Test').capitalize
   end
 
-  class AuthenticationError < StandardError; end
 end
+
+class AuthenticationError < StandardError; end
+class ShipWireSubmitOrderError < StandardError; end
+class SendError < StandardError; end

@@ -8,6 +8,11 @@ gem 'httparty'
 gem 'json'
 gem 'nokogiri'
 
+group :development do
+  gem 'pry'
+  gem 'awesome_print'
+end
+
 group :test do
   gem 'vcr'
   gem 'rspec'

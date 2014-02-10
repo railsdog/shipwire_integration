@@ -1,42 +1,43 @@
 # a ShipWire.Order.Id is the Spree.Order.Shipment.Number
-class ShippingRate < ShipWire
+class ShipmentEntry < ShipWire
+  # register Keys::AUGURY_ORDER_NEW
 
   attr_reader :order
 
   def consume
     @order = Order.new(payload['shipment'])
 
-    response = self.class.post('/RateServices.php', :body => xml_body)
+    response = self.class.post('/FulfillmentServices.php', :body => xml_body)
+    response = response['SubmitOrderResponse']
 
-    if response['RateResponse']['Status'] == 'OK'
-      # response['RateResponse']['Order']
-
-      return [ 200, { 'message_id' => message_id,
-               'order_number' => order.number,
-               'code' => 200,
-               'shipwire_response' => response['RateResponse'] } ]
-    else
-
-      return [ 500, { 'message_id' => message_id,
-               'order_number' => order.number,
-               'code' => 500,
-               'shipwire_response' => response['RateResponse'] } ]
-
+    if response['Status'] == 'Error'
+      raise SendError, response['ErrorMessage']
+    elsif response['OrderInformation'] and response['OrderInformation']['Order']['Exception']
+      raise ShipWireSubmitOrderError, response['OrderInformation']['Order']['Exception']['__content__']
     end
+
+    return { 'shipwire_response' => response }
   end
 
   private
 
-  #TODO: Make it multi-shipment aware
   def xml_body
     builder = Nokogiri::XML::Builder.new do |xml|
-      xml.RateRequest {
+      xml.OrderList {
         xml.Username config['shipwire.username']
         xml.Password config['shipwire.password']
         xml.Server server_mode
-        xml.Order(:id => order.shipment_number) {
+        xml.Referer 'SPREE'
+        xml.Order(:id => "#{order.order_number}-#{order.shipment_number}") {
           xml.Warehouse '00'
+          xml.SameDay 'NOT REQUESTED'
+          xml.Shipping 'GD'
           xml.AddressInfo(:type => 'ship') {
+            xml.Name {
+              xml.Full order.shipping_full_name
+            }
+            xml.Phone order.shipping_address['phone']
+            xml.Email order.email
             xml.Address1 order.shipping_address['address1']
             xml.Address2 order.shipping_address['address2']
             xml.City order.shipping_address['city']
@@ -56,5 +57,4 @@ class ShippingRate < ShipWire
     end
     builder.to_xml
   end
-
 end
