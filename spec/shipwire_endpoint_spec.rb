@@ -15,7 +15,7 @@ describe ShipwireEndpoint do
 
   it "should respond to POST /send_shipment" do
     ShipmentEntry.should_receive(:new).with(params, anything).and_return(mock(:consume => {}))
-    post '/send_shipment', params.to_json, auth
+    post '/add_shipment', params.to_json, auth
 
     last_response.status.should eq 200
   end
@@ -23,6 +23,6 @@ describe ShipwireEndpoint do
   it "should respond to POST /tracking" do
     params = { 'parameters' => parameters }
     ShipmentTracking.should_receive(:new).with(params, anything).and_return(mock(:consume => {}))
-    post '/tracking', params.to_json, auth
+    post '/get_shipments', params.to_json, auth
   end
 end

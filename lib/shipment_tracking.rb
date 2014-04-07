@@ -27,24 +27,17 @@ class ShipmentTracking < ShipWire
 
   def create_message(shipment)
     {
-      message: 'shipment:confirm',
-      inflate: true,
-      payload: {
-        order: {},
-        shipment: {
-          number: shipment['id'].split(/-/).last,
-          order_number: shipment['id'].split(/-/).first,
-          tracking: (shipment['TrackingNumber']['__content__'] || shipment['TrackingNumber']['#text']).strip,
-          tracking_url: shipment['TrackingNumber']['href'],
-          carrier: shipment['TrackingNumber']['carrier'],
-          shipped_date: Time.parse(shipment['shipDate']).utc.to_s,
-          delivery_date: Time.parse(shipment['expectedDeliveryDate']).utc.to_s,
-          cost: 0.0,
-          status: "",
-          stock_location: "",
-          shipping_method: "",
-        }
-      }
+      number: shipment['id'].split(/-/).last,
+      order_id: shipment['id'].split(/-/).first,
+      tracking: (shipment['TrackingNumber']['__content__'] || shipment['TrackingNumber']['#text']).strip,
+      tracking_url: shipment['TrackingNumber']['href'],
+      carrier: shipment['TrackingNumber']['carrier'],
+      shipped_date: Time.parse(shipment['shipDate']).utc.to_s,
+      delivery_date: Time.parse(shipment['expectedDeliveryDate']).utc.to_s,
+      cost: 0.0,
+      status: "shipped",
+      stock_location: "",
+      shipping_method: "",
     }
   end
 
