@@ -12,14 +12,10 @@ class ShipwireEndpoint < EndpointBase::Sinatra::Base
   	  shipment_entry = ShipmentEntry.new(@payload, @config)
   	  response  = shipment_entry.consume
 
-  	  msg = success_shipment_notification(response)
-  	  code = 200
+      result 200, 'Successfully sent shipment to Shipwire'
     rescue => e
-      msg = error_notification(e)
-      code = 500
+      result 500, e.message
     end
-
-    process_result code, msg
   end
 
   post '/tracking' do
@@ -27,47 +23,9 @@ class ShipwireEndpoint < EndpointBase::Sinatra::Base
       shipment_tracking = ShipmentTracking.new(@payload, @config)
       response = shipment_tracking.consume
 
-      msg = success_tracking_notification(response)
-      code = 200
+      result 200, 'Successfully sent shipment tracking information to shipwire'
     rescue => e
-      msg = error_notification(e)
-      code = 500
+      result 500, e.message
     end
-
-    process_result code, msg
-  end
-
-  private
-  def success_shipment_notification(response)
-    { notifications:
-      [
-      	{ level: 'info',
-          subject: 'Successfully sent shipment to Shipwire',
-          description: 'Successfully sent shipment to Shipwire' }
-      ]
-    }.merge(response)
-  end
-
-  def success_tracking_notification(response)
-    { notifications:
-      [
-      	{ level: 'info',
-          subject: 'Successfully sent shipment tracking information to shipwire',
-          description: 'Successfully sent shipment tracking information to shipwire' }
-      ]
-    }.merge(response)
-  end
-
-  def error_notification(e)
-    { notifications:
-      [
-      	{
-          level: 'error',
-          subject: e.message.strip,
-          description: e.message.strip,
-          backtrace: e.backtrace.to_a.join('\n\t')
-        }
-      ]
-    }
   end
 end

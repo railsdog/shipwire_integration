@@ -17,7 +17,6 @@ describe ShipwireEndpoint do
     ShipmentEntry.should_receive(:new).with(params, anything).and_return(mock(:consume => {}))
     post '/send_shipment', params.to_json, auth
 
-    last_response.body.should include("notifications")
     last_response.status.should eq 200
   end
 
