@@ -1,10 +1,17 @@
 require 'spec_helper'
 
 describe ShipmentEntry do
-  let(:config) { { 'shipwire.username' => 'chris@spreecommerce.com', 'shipwire.password' => 'GBb4gv6wCjVeHV', 'shipment_tracking_bookmark' => 1 } }
+  let(:config) do
+    {
+      'shipwire_username' => 'chris@spreecommerce.com',
+      'shipwire_password' => 'GBb4gv6wCjVeHV',
+      'shipment_tracking_bookmark' => 1
+    }
+  end
+
   let(:payload) { Factories.payload }
 
-  subject { described_class.new(payload, 'a123', config) }
+  subject { described_class.new(payload, config) }
 
   it 'posts to the FulfillmentServices api' do
     VCR.use_cassette('ship_wire_shipment_entry') do
@@ -33,5 +40,4 @@ describe ShipmentEntry do
     xml.should match '<Item num="0">'
     xml.should match '<Code>SPR-00001</Code>'
   end
-
 end

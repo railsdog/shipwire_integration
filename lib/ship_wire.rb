@@ -5,18 +5,17 @@ class ShipWire
   base_uri 'https://api.shipwire.com/exec/'
   format :xml
 
-  attr_accessor :order, :api_key, :config, :message_id, :payload
+  attr_accessor :order, :api_key, :config, :payload
 
-  def initialize(payload, message_id, config={})
+  def initialize(payload, config={})
     @payload = payload
-    @message_id = message_id
     @config = config
 
     authenticate!
   end
 
   def authenticate!
-    raise AuthenticationError if @config['shipwire.username'].nil? || @config['shipwire.password'].nil?
+    raise AuthenticationError if @config['shipwire_username'].nil? || @config['shipwire_password'].nil?
   end
 
   def server_mode

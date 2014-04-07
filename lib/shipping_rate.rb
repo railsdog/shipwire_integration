@@ -11,13 +11,12 @@ class ShippingRate < ShipWire
     if response['RateResponse']['Status'] == 'OK'
       # response['RateResponse']['Order']
 
-      return [ 200, { 'message_id' => message_id,
+      return [ 200, {
                'order_number' => order.number,
                'code' => 200,
                'shipwire_response' => response['RateResponse'] } ]
     else
-
-      return [ 500, { 'message_id' => message_id,
+      return [ 500, {
                'order_number' => order.number,
                'code' => 500,
                'shipwire_response' => response['RateResponse'] } ]
@@ -31,8 +30,8 @@ class ShippingRate < ShipWire
   def xml_body
     builder = Nokogiri::XML::Builder.new do |xml|
       xml.RateRequest {
-        xml.Username config['shipwire.username']
-        xml.Password config['shipwire.password']
+        xml.Username config['shipwire_username']
+        xml.Password config['shipwire_password']
         xml.Server server_mode
         xml.Order(:id => order.shipment_number) {
           xml.Warehouse '00'

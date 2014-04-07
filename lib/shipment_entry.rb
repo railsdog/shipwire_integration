@@ -24,8 +24,8 @@ class ShipmentEntry < ShipWire
   def xml_body
     builder = Nokogiri::XML::Builder.new do |xml|
       xml.OrderList {
-        xml.Username config['shipwire.username']
-        xml.Password config['shipwire.password']
+        xml.Username config['shipwire_username']
+        xml.Password config['shipwire_password']
         xml.Server server_mode
         xml.Referer 'SPREE'
         xml.Order(:id => "#{order.order_number}-#{order.shipment_number}") {

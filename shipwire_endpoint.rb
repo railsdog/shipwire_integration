@@ -9,7 +9,7 @@ class ShipwireEndpoint < EndpointBase::Sinatra::Base
 
   post '/send_shipment' do
     begin
-  	  shipment_entry = ShipmentEntry.new(@message[:payload], @message[:message_id], @config)
+  	  shipment_entry = ShipmentEntry.new(@payload, @config)
   	  response  = shipment_entry.consume
 
   	  msg = success_shipment_notification(response)
@@ -19,12 +19,12 @@ class ShipwireEndpoint < EndpointBase::Sinatra::Base
       code = 500
     end
 
-    process_result code, base_msg.merge(msg)
+    process_result code, msg
   end
 
   post '/tracking' do
     begin
-      shipment_tracking = ShipmentTracking.new(@message[:payload], @message[:message_id], @config)
+      shipment_tracking = ShipmentTracking.new(@payload, @config)
       response = shipment_tracking.consume
 
       msg = success_tracking_notification(response)
@@ -34,14 +34,10 @@ class ShipwireEndpoint < EndpointBase::Sinatra::Base
       code = 500
     end
 
-    process_result code, base_msg.merge(msg)
+    process_result code, msg
   end
 
   private
-  def base_msg
-  	{ 'message_id' => @message[:message_id] }
-  end
-
   def success_shipment_notification(response)
     { notifications:
       [

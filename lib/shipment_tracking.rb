@@ -51,13 +51,12 @@ class ShipmentTracking < ShipWire
   def xml_body
     builder = Nokogiri::XML::Builder.new do |xml|
       xml.TrackingUpdate {
-        xml.Username config['shipwire.username']
-        xml.Password config['shipwire.password']
+        xml.Username config['shipwire_username']
+        xml.Password config['shipwire_password']
         xml.Server server_mode
         xml.Bookmark '2'
       }
     end
     builder.to_xml
   end
-
 end
