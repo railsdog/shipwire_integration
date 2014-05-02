@@ -1,6 +1,13 @@
 # Shipwire Endpoint
 
-For a detailted explanation check out the [Spree Guides - Shipwire Endpoint](http://guides.spreecommerce.com/integration/shipwire_integration.html).
+[Shipwire](http://www.shipwire.com/) integration for Spree Commerce Hub
+
+#### Connection parameters
+
+| Name | Value | Example |
+| :----| :-----| :------ |
+| shipwire_username | Username | foobar |
+| shipwire_password | Password | foooo |
 
 ## Send Shipments
 
