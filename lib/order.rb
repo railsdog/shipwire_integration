@@ -5,8 +5,8 @@ class Order
 
   def initialize(shipment_hash={})
     @shipment = shipment_hash
-    @shipment_number = shipment['number']
-    @order_number = shipment['order_number']
+    @shipment_number = shipment['id'] || shipment['number']
+    @order_number = shipment['order_id']
 
     validate!
     validate_address!
