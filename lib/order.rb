@@ -63,8 +63,4 @@ class Order
   def shipment_items
     shipment['items']
   end
-
-  def variant_sku(variant_id)
-    shipment_items.detect { |v| v['variant_id'] == variant_id }['sku']
-  end
 end

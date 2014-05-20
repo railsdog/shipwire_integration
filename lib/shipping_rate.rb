@@ -46,7 +46,7 @@ class ShippingRate < ShipWire
 
           order.shipment_items.each_with_index do |unit, index|
             xml.Item(:num => index) {
-              xml.Code order.variant_sku(unit['variant_id'])
+              xml.Code unit['product_id']
               xml.Quantity unit['quantity']
             }
           end

@@ -27,7 +27,7 @@ class ShipmentEntry < ShipWire
         xml.Username config['shipwire_username']
         xml.Password config['shipwire_password']
         xml.Server server_mode
-        xml.Referer 'SPREE'
+        xml.Referer 'Store'
         xml.Order(:id => "#{order.order_number}-#{order.shipment_number}") {
           xml.Warehouse '00'
           xml.SameDay 'NOT REQUESTED'
@@ -48,13 +48,14 @@ class ShipmentEntry < ShipWire
 
           order.shipment_items.each_with_index do |unit, index|
             xml.Item(:num => index) {
-              xml.Code order.variant_sku(unit['variant_id'])
+              xml.Code unit['product_id']
               xml.Quantity unit['quantity']
             }
           end
         }
       }
     end
+
     builder.to_xml
   end
 end
