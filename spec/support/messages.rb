@@ -1,5 +1,8 @@
 module Factories
   class << self
+    def add_shipment
+      { shipment: JSON.parse(IO.read("#{File.dirname(__FILE__)}/messages/add_shipment.json")) }.with_indifferent_access
+    end
 
     def shipment(args={})
       payload["shipment"].merge(args)
@@ -41,6 +44,7 @@ module Factories
             {
               "name" => "Spree Baseball Jersey",
               "sku" => "SPR-00001",
+              "product_id" => "SPR-00001",
               "external_ref" => "",
               "quantity" => 1,
               "price" => 19.99,
@@ -51,6 +55,7 @@ module Factories
             {
               "name" => "Ruby on Rails Baseball Jersey",
               "sku" => "ROR-00004",
+              "product_id" => "ROR-00004",
               "external_ref" => "",
               "quantity" => 1,
               "price" => 19.99,
