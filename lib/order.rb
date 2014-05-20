@@ -25,7 +25,7 @@ class Order
   end
 
   def number
-    shipment['number']
+    shipment['id'] || shipment['number']
   end
 
   def email
@@ -67,5 +67,4 @@ class Order
   def variant_sku(variant_id)
     shipment_items.detect { |v| v['variant_id'] == variant_id }['sku']
   end
-
 end
