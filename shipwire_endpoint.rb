@@ -18,10 +18,6 @@ class ShipwireEndpoint < EndpointBase::Sinatra::Base
     end
   end
 
-  # Track shipment dispatches. Previously triggered with shipwire:shipment_results:poll.
-  # Returns a collection of shipment:confirm messages
-  #
-  # TODO How to trigger now?
   post '/get_shipments' do
     begin
       shipment_tracking = ShipmentTracking.new(@payload, @config)
