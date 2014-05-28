@@ -27,6 +27,7 @@ class ShipmentTracking < ShipWire
 
   def create_message(shipment)
     {
+      id: shipment['id'].split(/-/).last,
       number: shipment['id'].split(/-/).last,
       order_id: shipment['id'].split(/-/).first,
       tracking: (shipment['TrackingNumber']['__content__'] || shipment['TrackingNumber']['#text']).strip,

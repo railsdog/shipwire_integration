@@ -23,11 +23,12 @@ class ShipwireEndpoint < EndpointBase::Sinatra::Base
       shipment_tracking = ShipmentTracking.new(@payload, @config)
       response = shipment_tracking.consume
 
-      response[:messages].each do |message|
-        add_object :shipment, message
+      if messages = response[:messages]
+        messages.each { |m| add_object :shipment, m }
+        set_summary "Successfully received #{messages.count} shipment(s) from Shipwire"
       end
 
-      result 200, 'Successfully sent shipment tracking information to shipwire'
+      result 200
     rescue => e
       result 500, e.message
     end
