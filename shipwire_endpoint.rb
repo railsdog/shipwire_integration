@@ -5,6 +5,13 @@ require File.expand_path(File.dirname(__FILE__) + '/lib/ship_wire.rb')
 Dir['./lib/**/*.rb'].each { |f| require f }
 
 class ShipwireEndpoint < EndpointBase::Sinatra::Base
+  endpoint_key ENV["ENDPOINT_KEY"]
+
+  Honeybadger.configure do |config|
+    config.api_key = ENV['HONEYBADGER_KEY']
+    config.environment_name = ENV['RACK_ENV']
+  end if ENV['HONEYBADGER_KEY'].present?
+
   set :logging, true
 
   post '/add_shipment' do
