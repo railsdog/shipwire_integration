@@ -9,8 +9,8 @@ class ShipwireEndpoint < EndpointBase::Sinatra::Base
 
   post '/add_shipment' do
     begin
-  	  shipment_entry = ShipmentEntry.new(@payload, @config)
-  	  response  = shipment_entry.consume
+      shipment_entry = ShipmentEntry.new(@payload, @config)
+      response  = shipment_entry.consume
 
       result 200, 'Successfully sent shipment to Shipwire'
     rescue => e
