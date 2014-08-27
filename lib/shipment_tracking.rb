@@ -48,7 +48,7 @@ class ShipmentTracking < ShipWire
         xml.Username config['shipwire_username']
         xml.Password config['shipwire_password']
         xml.Server server_mode
-        xml.Bookmark '2'
+        xml.Bookmark '3'
       }
     end
     builder.to_xml
