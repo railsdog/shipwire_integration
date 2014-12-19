@@ -21,6 +21,7 @@ group :test do
   gem 'terminal-notifier-guard'
   gem 'rb-fsevent', '~> 0.9.1'
   gem 'rack-test'
+  gem 'dotenv'
 end
 
 group :production do

@@ -40,4 +40,22 @@ class ShipwireEndpoint < EndpointBase::Sinatra::Base
       result 500, e.message
     end
   end
+
+  post '/get_inventory' do
+    begin
+
+      stock = InventoryStatus.new(@payload, @config)
+
+      code, response = stock.consume
+
+      puts(code)
+      puts(response)
+
+      result 200, 'Successfully received Inventory from Shipwire'
+    rescue => e
+      puts(e.inspect)
+      result 500, e.message
+    end
+  end
+
 end

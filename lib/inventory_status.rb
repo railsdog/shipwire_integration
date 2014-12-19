@@ -1,5 +1,7 @@
 class InventoryStatus < ShipWire
   def consume
+    puts "InventoryStatus::consume"
+
     response = self.class.post('/InventoryServices.php', :body => xml_body)
 
     if response['InventoryUpdateResponse']['Status'] == 'Error'
@@ -18,6 +20,7 @@ class InventoryStatus < ShipWire
   private
 
   def xml_body
+    puts "Build  XML #{config.inspect} "
     builder = Nokogiri::XML::Builder.new do |xml|
       xml.InventoryUpdate {
         xml.Username config['shipwire_username']
