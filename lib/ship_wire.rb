@@ -2,7 +2,7 @@ require 'nokogiri'
 
 class ShipWire
   include HTTParty
-  base_uri ENV['SHIPWIRE_BASE_URI'] # https://api.beta.shipwire.com/exec' # 'https://api.shipwire.com/exec/'
+  base_uri(ENV['SHIPWIRE_BASE_URI'] || 'https://api.shipwire.com/exec/')
   format :xml
 
   attr_accessor :order, :api_key, :config, :payload
