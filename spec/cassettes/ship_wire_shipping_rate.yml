@@ -1,0 +1,75 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.beta.shipwire.com/exec/RateServices.php
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0"?>
+        <RateRequest>
+          <Username>chris@spreecommerce.com</Username>
+          <Password>GBb4gv6wCjVeHV</Password>
+          <Server>Test</Server>
+          <Order id="H215918586">
+            <Warehouse>00</Warehouse>
+            <AddressInfo type="ship">
+              <Address1>7735 Old Georgetown Rd</Address1>
+              <Address2/>
+              <City>Bethesda</City>
+              <State>Maryland</State>
+              <Country>US</Country>
+              <Zip>20814</Zip>
+            </AddressInfo>
+            <Item num="0">
+              <Code>SPR-00001</Code>
+              <Quantity>1</Quantity>
+            </Item>
+            <Item num="1">
+              <Code>ROR-00004</Code>
+              <Quantity>1</Quantity>
+            </Item>
+          </Order>
+        </RateRequest>
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - '*/*'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 401
+      message: Authorization Required
+    headers:
+      Date:
+      - Tue, 23 Dec 2014 14:18:46 GMT
+      Server:
+      - Apache
+      Set-Cookie:
+      - PHPSESSID=1ajq66arb5r185kcbfo405d8f7; path=/
+      Expires:
+      - Thu, 19 Nov 1981 08:52:00 GMT
+      Cache-Control:
+      - no-store, no-cache, must-revalidate, post-check=0, pre-check=0
+      Pragma:
+      - no-cache
+      Vary:
+      - Accept-Encoding
+      P3p:
+      - policyref="/w3c/p3p.xml", CP="COM CNT INT NAV PUR STA UNI CAO DSP CUR o i
+        OUR IND"
+      Content-Length:
+      - '218'
+      Content-Type:
+      - application/xml; charset=utf-8
+    body:
+      encoding: UTF-8
+      string: "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<!DOCTYPE \nRateResponse
+        SYSTEM \"http://beta.shipwire.com/exec/download/RateResponse.dtd\">\n<RateResponse>\n
+        \ <Status>Error</Status>\n  <ErrorMessage>Could not verify Username/EmailAddress
+        and Password\n  combination</ErrorMessage>\n</RateResponse>"
+    http_version: 
+  recorded_at: Tue, 23 Dec 2014 14:18:46 GMT
+recorded_with: VCR 2.9.3
