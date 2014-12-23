@@ -1,0 +1,64 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.beta.shipwire.com/exec/TrackingServices.php
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0"?>
+        <TrackingUpdate>
+          <Username>chris@spreecommerce.com</Username>
+          <Password>GBb4gv6wCjVeHV</Password>
+          <Server>Test</Server>
+          <Bookmark>3</Bookmark>
+        </TrackingUpdate>
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - '*/*'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 23 Dec 2014 12:10:58 GMT
+      Server:
+      - Apache
+      Set-Cookie:
+      - PHPSESSID=ae4phm9qobjnvef9vtis2ccga4; path=/
+      Expires:
+      - Mon, 26 Jul 1997 05:00:00 GMT
+      Cache-Control:
+      - no-store, no-cache, must-revalidate
+      - post-check=0, pre-check=0
+      Pragma:
+      - no-cache
+      Last-Modified:
+      - Tue, 23 Dec 2014 12:10:59 GMT
+      Vary:
+      - Accept-Encoding
+      P3p:
+      - policyref="/w3c/p3p.xml", CP="COM CNT INT NAV PUR STA UNI CAO DSP CUR o i
+        OUR IND"
+      Content-Length:
+      - '243'
+      Content-Type:
+      - application/xml; charset=utf-8
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0" encoding="utf-8"?>
+        <!DOCTYPE TrackingUpdateResponse SYSTEM "http://beta.shipwire.com/exec/download/TrackingUpdateResponse.dtd">
+        <TrackingUpdateResponse>
+          <Status>Error</Status>
+          <ErrorMessage>Error with Valid Username/EmailAddress and Password Required. There is an error in XML
+          document.</ErrorMessage>
+        </TrackingUpdateResponse>
+    http_version: 
+  recorded_at: Tue, 23 Dec 2014 12:10:59 GMT
+recorded_with: VCR 2.9.3

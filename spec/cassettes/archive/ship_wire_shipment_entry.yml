@@ -1,0 +1,83 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.beta.shipwire.com/exec/FulfillmentServices.php
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0"?>
+        <OrderList>
+          <Username>chris@spreecommerce.com</Username>
+          <Password>GBb4gv6wCjVeHV</Password>
+          <Server>Test</Server>
+          <Referer>Store</Referer>
+          <Order id="-H215918586">
+            <Warehouse>00</Warehouse>
+            <SameDay>NOT REQUESTED</SameDay>
+            <Shipping>GD</Shipping>
+            <AddressInfo type="ship">
+              <Name>
+                <Full>Brian Quinn</Full>
+              </Name>
+              <Phone>555-123-456</Phone>
+              <Email>spree@example.com</Email>
+              <Address1>7735 Old Georgetown Rd</Address1>
+              <Address2/>
+              <City>Bethesda</City>
+              <State>Maryland</State>
+              <Country>US</Country>
+              <Zip>20814</Zip>
+            </AddressInfo>
+            <Item num="0">
+              <Code>SPR-00001</Code>
+              <Quantity>1</Quantity>
+            </Item>
+            <Item num="1">
+              <Code>ROR-00004</Code>
+              <Quantity>1</Quantity>
+            </Item>
+          </Order>
+        </OrderList>
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - '*/*'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 401
+      message: Authorization Required
+    headers:
+      Date:
+      - Tue, 23 Dec 2014 12:10:57 GMT
+      Server:
+      - Apache
+      Set-Cookie:
+      - PHPSESSID=9ak6r7039aem3qumc5l5msr3k2; path=/
+      Expires:
+      - Thu, 19 Nov 1981 08:52:00 GMT
+      Cache-Control:
+      - no-store, no-cache, must-revalidate, post-check=0, pre-check=0
+      Pragma:
+      - no-cache
+      Vary:
+      - Accept-Encoding
+      P3p:
+      - policyref="/w3c/p3p.xml", CP="COM CNT INT NAV PUR STA UNI CAO DSP CUR o i
+        OUR IND"
+      Content-Length:
+      - '237'
+      Content-Type:
+      - application/xml; charset=utf-8
+    body:
+      encoding: UTF-8
+      string: "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<!DOCTYPE \nSubmitOrderResponse
+        SYSTEM \"http://beta.shipwire.com/exec/download/SubmitOrderResponse.dtd\">\n<SubmitOrderResponse>\n
+        \ <Status>Error</Status>\n  <ErrorMessage>\n    <![CDATA[Could not verify
+        Username/EmailAddress and Password combination]]>\n</ErrorMessage>\n</SubmitOrderResponse>"
+    http_version: 
+  recorded_at: Tue, 23 Dec 2014 12:10:58 GMT
+recorded_with: VCR 2.9.3

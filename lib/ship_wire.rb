@@ -1,8 +1,9 @@
 require 'nokogiri'
 
 class ShipWire
+
   include HTTParty
-  base_uri(ENV['SHIPWIRE_BASE_URI'] || 'https://api.shipwire.com/exec/')
+  base_uri(ENV['SHIPWIRE_BASE_URI'] || 'api.shipwire.com')
   format :xml
 
   attr_accessor :order, :api_key, :config, :payload
@@ -16,9 +17,17 @@ class ShipWire
   end
 
   def authenticate!
-    puts "ShipWire::authenticate! #{@config['shipwire_username'].nil? || @config['shipwire_password'].nil?}"
     raise AuthenticationError if @config['shipwire_username'].nil? || @config['shipwire_password'].nil?
   end
+
+  def server
+    @server ||= (ENV['SHIPWIRE_BASE_URI'] || 'api.shipwire.com')
+  end
+
+  def basic_auth
+    @basic_auth ||= {:username => @config['shipwire_username'], :password => @config['shipwire_password'] }
+  end
+
 
   def server_mode
     # Augury.test? ? 'Test' : 'Production'

@@ -1,26 +1,59 @@
-class InventoryStatus < ShipWire
-  def consume
-    puts "InventoryStatus::consume"
+require 'net/https'
 
-    response = self.class.post('/InventoryServices.php', :body => xml_body)
+class InventoryStatus < ShipWire
+
+  def consume
+    response = self.class.post('/exec/InventoryServices.php', :body => xml_body)
 
     if response['InventoryUpdateResponse']['Status'] == 'Error'
       return [ 500, {
-               'code' => 500,
-               'shipwire_response' => response['InventoryUpdateResponse'] } ]
+                      'code' => 500,
+                      'shipwire_response' => response['InventoryUpdateResponse'] } ]
 
     else
       return [ 200, {
-               'code' => 200,
-               'shipwire_response' => response['InventoryUpdateResponse'] } ]
-
+                      'code' => 200,
+                      'shipwire_response' => response['InventoryUpdateResponse'] } ]
     end
   end
 
+
+  def stock
+
+    response = HTTParty.get("#{server}/api/v3/stock", { :basic_auth => basic_auth } )
+    #puts response.body, response.code, response.message, response.headers.inspect,response.parsed_response.inspect
+
+    if response.code != 200
+      return [ 500, { 'code' => 500,
+                      'shipwire_response' => response.body } ]
+
+    else
+      msgs = []
+
+      response.parsed_response['resource']['items'].each do |item|
+        msgs << create_message(item['resource'])
+      end
+
+      return [ 200, {  'code' => 200,
+                       'messages' => msgs,
+                       'shipwire_response' => response.parsed_response } ]
+    end
+  end
+
+
   private
 
+  def create_message(product)
+    puts product.inspect
+    {
+        id: product['productId'],
+        sku: product['sku'],
+        count: product['good']
+    }
+  end
+
+
   def xml_body
-    puts "Build  XML #{config.inspect} "
     builder = Nokogiri::XML::Builder.new do |xml|
       xml.InventoryUpdate {
         xml.Username config['shipwire_username']
