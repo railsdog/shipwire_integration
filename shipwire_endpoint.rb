@@ -48,12 +48,17 @@ class ShipwireEndpoint < EndpointBase::Sinatra::Base
 
       code, response = inventory_status.stock
 
-      summary = if messages = response[:messages]
+      puts response.inspect
+
+
+      summary = if messages = response['messages']
         messages.each { |m| add_object :product, m }
         "Successfully received #{messages.count} Product(s) from Shipwire"
       else
         "Successfully received 0 Product(s) from Shipwire"
       end
+
+      puts summary.inspect
 
       result 200, summary
     rescue => e
