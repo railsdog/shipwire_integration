@@ -44,11 +44,11 @@ http_interactions:
       message: Authorization Required
     headers:
       Date:
-      - Tue, 23 Dec 2014 12:11:00 GMT
+      - Tue, 23 Dec 2014 14:18:46 GMT
       Server:
       - Apache
       Set-Cookie:
-      - PHPSESSID=sir50a7v39n23e4bqqahj3k1t2; path=/
+      - PHPSESSID=1ajq66arb5r185kcbfo405d8f7; path=/
       Expires:
       - Thu, 19 Nov 1981 08:52:00 GMT
       Cache-Control:
@@ -71,5 +71,5 @@ http_interactions:
         \ <Status>Error</Status>\n  <ErrorMessage>Could not verify Username/EmailAddress
         and Password\n  combination</ErrorMessage>\n</RateResponse>"
     http_version: 
-  recorded_at: Tue, 23 Dec 2014 12:11:00 GMT
+  recorded_at: Tue, 23 Dec 2014 14:18:46 GMT
 recorded_with: VCR 2.9.3

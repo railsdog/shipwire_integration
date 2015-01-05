@@ -7,7 +7,7 @@
 class ShipmentTracking < ShipWire
 
   def consume
-    response = self.class.post('/TrackingServices.php', :body => xml_body)
+    response = self.class.post('/exec/TrackingServices.php', :body => xml_body)
 
     if response['TrackingUpdateResponse']['Status'] == 'Error'
       raise SendError, response['TrackingUpdateResponse']['ErrorMessage']

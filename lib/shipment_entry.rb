@@ -5,7 +5,7 @@ class ShipmentEntry < ShipWire
   def consume
     @order = Order.new(payload['shipment'])
 
-    response = self.class.post('/FulfillmentServices.php', :body => xml_body)
+    response = self.class.post('/exec/FulfillmentServices.php', :body => xml_body)
     response = response['SubmitOrderResponse']
 
     if response['Status'] == 'Error'

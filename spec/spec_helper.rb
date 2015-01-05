@@ -26,9 +26,8 @@ VCR.configure do |c|
   c.cassette_library_dir = 'spec/cassettes'
   c.hook_into :webmock
 
-  c.filter_sensitive_data("NETSUITE_EMAIL")    { ENV["NETSUITE_EMAIL"] }
-  c.filter_sensitive_data("NETSUITE_PASSWORD") { ENV["NETSUITE_PASSWORD"] }
-  c.filter_sensitive_data("NETSUITE_ACCOUNT")  { ENV["NETSUITE_ACCOUNT"] }
+  c.filter_sensitive_data("SHIPWIRE_USERNAME") { ENV["SHIPWIRE_USERNAME"] }
+  c.filter_sensitive_data("SHIPWIRE_PASSWORD") { ENV["SHIPWIRE_PASSWORD"] }
 end
 
 RSpec.configure do |config|

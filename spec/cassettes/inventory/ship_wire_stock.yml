@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://shipwiretest%40lootcrate.com:lootcrate12@api.beta.shipwire.com/api/v3/stock
+    uri: https://shipwiretest%40lootcrate.com:SHIPWIRE_PASSWORD@api.beta.shipwire.com/api/v3/stock
     body:
       encoding: US-ASCII
       string: ''
@@ -19,23 +19,23 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Tue, 23 Dec 2014 19:56:57 GMT
+      - Mon, 05 Jan 2015 16:30:04 GMT
       Server:
       - Apache
       X-Process-Time:
-      - 0.060053 seconds
+      - 0.061824 seconds
       Vary:
       - Accept-Encoding
       P3p:
       - policyref="/w3c/p3p.xml", CP="COM CNT INT NAV PUR STA UNI CAO DSP CUR o i
         OUR IND"
       Content-Length:
-      - '317'
+      - '320'
       Content-Type:
       - application/json
     body:
       encoding: UTF-8
-      string: '{"status":200,"message":"Successful","resourceLocation":null,"resource":{"offset":0,"total":1,"previous":null,"next":null,"items":[{"resourceLocation":null,"resource":{"productId":191134,"productExternalId":null,"sku":"Test-Sku","isBundle":0,"isAlias":0,"warehouseRegion":"LAX","warehouseId":11,"warehouseExternalId":null,"pending":0,"good":3,"reserved":0,"backordered":0,"shipping":0,"shipped":0,"creating":0,"consuming":0,"consumed":0,"created":0,"damaged":0,"returned":0,"inreview":0,"availableDate":null,"shippedLastDay":0,"shippedLastWeek":0,"shippedLast4Weeks":0,"orderedLastDay":0,"orderedLastWeek":0,"orderedLast4Weeks":0}}]}}'
+      string: '{"status":200,"message":"Successful","resourceLocation":null,"resource":{"offset":0,"total":1,"previous":null,"next":null,"items":[{"resourceLocation":null,"resource":{"productId":191134,"productExternalId":null,"sku":"Test-Sku","isBundle":0,"isAlias":0,"warehouseRegion":"LAX","warehouseId":11,"warehouseExternalId":null,"pending":0,"good":2,"reserved":0,"backordered":0,"shipping":0,"shipped":1,"creating":0,"consuming":0,"consumed":0,"created":0,"damaged":0,"returned":0,"inreview":0,"availableDate":null,"shippedLastDay":0,"shippedLastWeek":0,"shippedLast4Weeks":0,"orderedLastDay":0,"orderedLastWeek":0,"orderedLast4Weeks":0}}]}}'
     http_version: 
-  recorded_at: Tue, 23 Dec 2014 19:56:58 GMT
+  recorded_at: Mon, 05 Jan 2015 16:30:03 GMT
 recorded_with: VCR 2.9.3

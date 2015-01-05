@@ -3,9 +3,9 @@ require 'spec_helper'
 describe ShipmentTracking do
   let(:config) do
     {
-      'shipwire_username' => 'chris@spreecommerce.com',
-      'shipwire_password' => 'GBb4gv6wCjVeHV',
-      'shipment_tracking_bookmark' => 1
+        'shipwire_username' => ENV['SHIPWIRE_USERNAME'],
+        'shipwire_password' => ENV['SHIPWIRE_PASSWORD'],
+        'shipment_tracking_bookmark' => 1
     }
   end
 
@@ -22,6 +22,6 @@ describe ShipmentTracking do
 
   it 'builds xml body' do
     xml = subject.send :xml_body
-    xml.should match '<Username>chris@spreecommerce.com</Username>'
+    expect(xml).to include "<Username>" + ENV['SHIPWIRE_USERNAME'] + "</Username>"
   end
 end

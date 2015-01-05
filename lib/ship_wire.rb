@@ -12,7 +12,6 @@ class ShipWire
     @payload = payload
     @config = config
 
-    puts "ShipWire::initialize #{@config.inspect}"
     authenticate!
   end
 

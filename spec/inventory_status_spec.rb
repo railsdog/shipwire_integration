@@ -34,7 +34,7 @@ describe InventoryStatus do
   end
 
 
-  context "new REST API" do
+  context "new REST API", :rest => true do
 
     it 'posts to the InventoryServices REST api' do
       VCR.use_cassette('inventory/ship_wire_inventory_status', :record => :all, :allow_playback_repeats => true) do
@@ -48,7 +48,9 @@ describe InventoryStatus do
         code, response = subject.stock
 
         expect(code).to eq 200
-        expect(response['shipwire_response']).to have_key('resource')
+
+        expect(response).to have_key 'messages'
+        expect(response).to have_key 'shipwire_response'
       end
     end
 
@@ -56,9 +58,16 @@ describe InventoryStatus do
       VCR.use_cassette('inventory/ship_wire_stock', :record => :all, :allow_playback_repeats => true) do
         code, response = subject.stock
 
-        puts response['shipwire_response']['resource'].inspect
+        expect(response['shipwire_response']).to have_key('resource')
 
-        #response['shipwire_response']['resource'].each { |i| puts i}
+        expect(response['messages'].size).to be > 0
+
+        response['messages'].each do |i|
+          expect(i).to have_key(:sku)
+          expect(i).to have_key(:id)
+          expect(i).to have_key(:count)
+        end
+
       end
     end
 

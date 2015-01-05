@@ -6,7 +6,7 @@ class ShippingRate < ShipWire
   def consume
     @order = Order.new(payload['shipment'])
 
-    response = self.class.post('/RateServices.php', :body => xml_body)
+    response = self.class.post('/exec/RateServices.php', :body => xml_body)
 
     if response['RateResponse']['Status'] == 'OK'
       # response['RateResponse']['Order']

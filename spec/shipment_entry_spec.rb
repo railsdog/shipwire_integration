@@ -3,9 +3,9 @@ require 'spec_helper'
 describe ShipmentEntry do
   let(:config) do
     {
-      'shipwire_username' => 'chris@spreecommerce.com',
-      'shipwire_password' => 'GBb4gv6wCjVeHV',
-      'shipment_tracking_bookmark' => 1
+        'shipwire_username' => ENV['SHIPWIRE_USERNAME'],
+        'shipwire_password' => ENV['SHIPWIRE_PASSWORD'],
+        'shipment_tracking_bookmark' => 1
     }
   end
 
@@ -35,7 +35,7 @@ describe ShipmentEntry do
   it 'builds xml body' do
     subject.stub(:order => Order.new(payload['shipment']))
     xml = subject.send :xml_body
-    xml.should match '<Username>chris@spreecommerce.com</Username>'
+    expect(xml).to include "<Username>" + ENV['SHIPWIRE_USERNAME'] + "</Username>"
     xml.should match '<State>Maryland</State>'
     xml.should match '<Item num="0">'
     xml.should match '<Code>SPR-00001</Code>'
