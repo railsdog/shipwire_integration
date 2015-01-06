@@ -25,11 +25,11 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Mon, 05 Jan 2015 15:46:39 GMT
+      - Tue, 06 Jan 2015 16:45:11 GMT
       Server:
       - Apache
       Set-Cookie:
-      - PHPSESSID=vsnkmavg34sgv8ablkhv1ed841; path=/
+      - PHPSESSID=rct89en6sd35j7k8h9tc56lh02; path=/
       Expires:
       - Mon, 26 Jul 1997 05:00:00 GMT
       Cache-Control:
@@ -38,14 +38,14 @@ http_interactions:
       Pragma:
       - no-cache
       Last-Modified:
-      - Mon, 05 Jan 2015 15:46:39 GMT
+      - Tue, 06 Jan 2015 16:45:11 GMT
       Vary:
       - Accept-Encoding
       P3p:
       - policyref="/w3c/p3p.xml", CP="COM CNT INT NAV PUR STA UNI CAO DSP CUR o i
         OUR IND"
       Content-Length:
-      - '435'
+      - '434'
       Content-Type:
       - text/xml; charset=utf-8
     body:
@@ -53,7 +53,7 @@ http_interactions:
       string: |
         <?xml version="1.0" encoding="utf-8"?>
         <!DOCTYPE InventoryUpdateResponse SYSTEM "http://beta.shipwire.com/exec/download/InventoryUpdateResponse.dtd">
-        <InventoryUpdateResponse><Status>Test</Status><Product code="GD802-024" quantity="14" good="14" pending="300" backordered="0" reserved="15" shipping="7" shipped="7013" consuming="0" consumed="0" creating="0" created="0" availableDate="2012-01-19" shippedLastDay="13" shippedLastWeek="84" shippedLast4Weeks="401" orderedLastDay="15" orderedLastWeek="99" orderedLast4Weeks="416"/><Product code="GD201-500" quantity="32" good="32" pending="500" backordered="0" reserved="17" shipping="0" shipped="1997" consuming="0" consumed="0" creating="0" created="0" availableDate="2012-02-21" shippedLastDay="11" shippedLastWeek="74" shippedLast4Weeks="221" orderedLastDay="19" orderedLastWeek="90" orderedLast4Weeks="242"/><TotalProducts>2</TotalProducts><ProcessingTime units="ms" host="t1.lwb.shipwire.com">16</ProcessingTime></InventoryUpdateResponse>
+        <InventoryUpdateResponse><Status>Test</Status><Product code="GD802-024" quantity="14" good="14" pending="300" backordered="0" reserved="15" shipping="7" shipped="7013" consuming="0" consumed="0" creating="0" created="0" availableDate="2012-01-19" shippedLastDay="13" shippedLastWeek="84" shippedLast4Weeks="401" orderedLastDay="15" orderedLastWeek="99" orderedLast4Weeks="416"/><Product code="GD201-500" quantity="32" good="32" pending="500" backordered="0" reserved="17" shipping="0" shipped="1997" consuming="0" consumed="0" creating="0" created="0" availableDate="2012-02-21" shippedLastDay="11" shippedLastWeek="74" shippedLast4Weeks="221" orderedLastDay="19" orderedLastWeek="90" orderedLast4Weeks="242"/><TotalProducts>2</TotalProducts><ProcessingTime units="ms" host="t1.lwb.shipwire.com">15</ProcessingTime></InventoryUpdateResponse>
     http_version: 
-  recorded_at: Mon, 05 Jan 2015 15:46:38 GMT
+  recorded_at: Tue, 06 Jan 2015 16:45:08 GMT
 recorded_with: VCR 2.9.3

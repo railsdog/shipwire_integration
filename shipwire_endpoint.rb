@@ -43,8 +43,8 @@ class ShipwireEndpoint < EndpointBase::Sinatra::Base
 
   post '/get_inventory' do
     begin
-      puts "/get_inventory => #{@payload} : #{@config}"
-      
+      #puts "#TS DEBUG : /get_inventory => #{@payload} : #{@config}"
+
       inventory_status = InventoryStatus.new(@payload, @config)
 
       code, response = inventory_status.stock

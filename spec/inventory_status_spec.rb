@@ -66,6 +66,7 @@ describe InventoryStatus do
           expect(i).to have_key(:sku)
           expect(i).to have_key(:id)
           expect(i).to have_key(:count)
+          expect(i[:channel]).to eq "shipwire"
         end
 
       end

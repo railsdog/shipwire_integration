@@ -20,13 +20,12 @@ class InventoryStatus < ShipWire
 
   def stock
 
-    puts "Getting stock from server : #{server}/api/v3/stock"
+    #puts "#TS DEBUG : Getting stock from server : #{server}/api/v3/stock"
 
     response = HTTParty.get("#{server}/api/v3/stock", { :basic_auth => basic_auth } )
 
     if response.code != 200
-      # puts response.body, response.code, response.message, response.headers.inspect,response.parsed_response.inspect
-
+      # puts "#TS DEBUG :", response.body, response.code, response.message, response.headers.inspect,response.parsed_response.inspect
       return [ 500, { 'code' => 500,
                       'shipwire_response' => response.parsed_response['message'] } ]
 
@@ -47,11 +46,12 @@ class InventoryStatus < ShipWire
   private
 
   def create_message(product)
-    puts product.inspect
+    puts "#TS DEBUG - shipwire product #{product.inspect}"
     {
         id: product['productId'],
         sku: product['sku'],
-        count: product['good']
+        count: product['good'],
+        channel: 'shipwire'
     }
   end
 

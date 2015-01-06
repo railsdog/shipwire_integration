@@ -19,11 +19,11 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Tue, 06 Jan 2015 10:54:47 GMT
+      - Tue, 06 Jan 2015 16:45:15 GMT
       Server:
       - Apache
       X-Process-Time:
-      - 0.060655 seconds
+      - 0.059773 seconds
       Vary:
       - Accept-Encoding
       P3p:
@@ -37,7 +37,7 @@ http_interactions:
       encoding: UTF-8
       string: '{"status":200,"message":"Successful","resourceLocation":null,"resource":{"offset":0,"total":1,"previous":null,"next":null,"items":[{"resourceLocation":null,"resource":{"productId":191134,"productExternalId":null,"sku":"Test-Sku","isBundle":0,"isAlias":0,"warehouseRegion":"LAX","warehouseId":11,"warehouseExternalId":null,"pending":0,"good":2,"reserved":0,"backordered":0,"shipping":0,"shipped":1,"creating":0,"consuming":0,"consumed":0,"created":0,"damaged":0,"returned":0,"inreview":0,"availableDate":null,"shippedLastDay":0,"shippedLastWeek":0,"shippedLast4Weeks":0,"orderedLastDay":0,"orderedLastWeek":0,"orderedLast4Weeks":0}}]}}'
     http_version: 
-  recorded_at: Tue, 06 Jan 2015 10:52:52 GMT
+  recorded_at: Tue, 06 Jan 2015 16:45:13 GMT
 - request:
     method: get
     uri: https://wotaloadof%40rubbish.naff:SHIPWIRE_PASSWORD@api.beta.shipwire.com/api/v3/stock
@@ -57,11 +57,11 @@ http_interactions:
       message: Unauthorized
     headers:
       Date:
-      - Tue, 06 Jan 2015 10:54:48 GMT
+      - Tue, 06 Jan 2015 16:45:16 GMT
       Server:
       - Apache
       X-Process-Time:
-      - 0.008426 seconds
+      - 0.007446 seconds
       Www-Authenticate:
       - Basic realm="Shipwire API"
       - OAuth realm="Shipwire API"
@@ -79,5 +79,5 @@ http_interactions:
       string: '{"status":401,"message":"Please include a valid Authorization header
         (Basic)","resourceLocation":null}'
     http_version: 
-  recorded_at: Tue, 06 Jan 2015 10:52:53 GMT
+  recorded_at: Tue, 06 Jan 2015 16:45:14 GMT
 recorded_with: VCR 2.9.3
