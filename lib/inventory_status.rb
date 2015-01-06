@@ -25,7 +25,7 @@ class InventoryStatus < ShipWire
     response = HTTParty.get("#{server}/api/v3/stock", { :basic_auth => basic_auth } )
 
     if response.code != 200
-      puts response.body, response.code, response.message, response.headers.inspect,response.parsed_response.inspect
+      # puts response.body, response.code, response.message, response.headers.inspect,response.parsed_response.inspect
 
       return [ 500, { 'code' => 500,
                       'shipwire_response' => response.parsed_response['message'] } ]
