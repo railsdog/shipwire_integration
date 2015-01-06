@@ -34,35 +34,25 @@ describe ShipwireEndpoint do
   end
 
   it "should respond to POST /get_inventory", :rest => true do
-    # InventoryStatus.should_receive(:new).with(params, anything).and_return(double(:consume => {}))
+
     VCR.use_cassette("inventory_item/new_search", :record => :all, :allow_playback_repeats => true) do
       post '/get_inventory', params.to_json, auth
-
-      puts last_response.inspect
 
       expect(last_response.status).to eq 200
       expect(last_response.body).to be
 
-      puts json_response.inspect
-
       expect(json_response[:products]).to be_present
       expect(json_response[:summary]).to be_present
-
-
     end
   end
 
   it "should respond with 500 to bad params on POST /get_inventory", :rest => true do
-    # InventoryStatus.should_receive(:new).with(params, anything).and_return(double(:consume => {}))
+
     VCR.use_cassette("inventory_item/new_search", :record => :all, :allow_playback_repeats => true) do
 
       params["parameters"]["shipwire_username"] = "wotaloadof@rubbish.naff"
 
-      puts  params["parameters"].inspect
-
       post '/get_inventory', params.to_json, auth
-
-      puts last_response.inspect
 
       expect(last_response.status).to eq 500
       expect(last_response.body).to include "Error accessing stock information from Shipwire"

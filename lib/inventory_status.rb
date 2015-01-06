@@ -20,6 +20,8 @@ class InventoryStatus < ShipWire
 
   def stock
 
+    puts "Getting stock from server : #{server}/api/v3/stock"
+
     response = HTTParty.get("#{server}/api/v3/stock", { :basic_auth => basic_auth } )
 
     if response.code != 200
